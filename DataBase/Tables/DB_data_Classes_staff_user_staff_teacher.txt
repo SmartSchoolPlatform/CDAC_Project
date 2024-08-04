@@ -1,0 +1,72 @@
+-- Teachers for 1st to 4th standard
+INSERT INTO Staff (staff_id, designation, name, department, phone_number, email, date_of_birth, gender, education_details, profile_pic) VALUES
+(30001, 'Teacher', 'Amit Kumar', 'Mathematics', '9123456789', 'amit.kumar@example.com', '1980-05-15', 'Male', 'M.Sc Mathematics', 'profile1.jpg'),
+(30002, 'Teacher', 'Pooja Sharma', 'Marathi', '9123456788', 'pooja.sharma@example.com', '1982-07-22', 'Female', 'M.A Marathi', 'profile2.jpg'),
+(30003, 'Teacher', 'Sanjay Patel', 'English', '9123456787', 'sanjay.patel@example.com', '1984-08-11', 'Male', 'M.A English', 'profile3.jpg'),
+(30004, 'Teacher', 'Neha Gupta', 'History', '9123456786', 'neha.gupta@example.com', '1986-09-30', 'Female', 'M.A History', 'profile4.jpg'),
+
+-- Teachers for 5th to 10th standard
+(30005, 'Teacher', 'Ravi Singh', 'Hindi', '9123456785', 'ravi.singh@example.com', '1985-10-25', 'Male', 'M.A Hindi', 'profile5.jpg'),
+(30006, 'Teacher', 'Kavita Desai', 'Hindi', '9123456784', 'kavita.desai@example.com', '1987-11-05', 'Female', 'M.A Hindi', 'profile6.jpg'),
+(30007, 'Teacher', 'Amitabh Sharma', 'Marathi', '9123456783', 'amitabh.sharma@example.com', '1981-06-20', 'Male', 'M.A Marathi', 'profile7.jpg'),
+(30008, 'Teacher', 'Anjali Reddy', 'Marathi', '9123456782', 'anjali.reddy@example.com', '1983-12-12', 'Female', 'M.A Marathi', 'profile8.jpg'),
+(30009, 'Teacher', 'Rajesh Verma', 'Mathematics', '9123456781', 'rajesh.verma@example.com', '1979-03-15', 'Male', 'M.Sc Mathematics', 'profile9.jpg'),
+(30010, 'Teacher', 'Suman Rao', 'Mathematics', '9123456780', 'suman.rao@example.com', '1982-07-01', 'Female', 'M.Sc Mathematics', 'profile10.jpg'),
+(30011, 'Teacher', 'Aakash Mehta', 'Science', '9123456790', 'aakash.mehta@example.com', '1987-10-10', 'Male', 'M.Sc Science', 'profile11.jpg'),
+(30012, 'Teacher', 'Geeta Sharma', 'Science', '9123456791', 'geeta.sharma@example.com', '1983-05-15', 'Female', 'M.Sc Science', 'profile12.jpg'),
+(30013, 'Teacher', 'Vinay Kumar', 'English', '9123456792', 'vinay.kumar@example.com', '1984-07-22', 'Male', 'M.A English', 'profile13.jpg'),
+(30014, 'Teacher', 'Shivani Kapoor', 'English', '9123456793', 'shivani.kapoor@example.com', '1985-09-25', 'Female', 'M.A English', 'profile14.jpg'),
+(30015, 'Teacher', 'Siddharth Jain', 'Geometry', '9123456794', 'siddharth.jain@example.com', '1981-08-30', 'Male', 'M.Sc Geometry', 'profile15.jpg'),
+(30016, 'Teacher', 'Rohit Kumar', 'Geometry', '9123456795', 'rohit.kumar@example.com', '1984-07-22', 'Male', 'M.Sc Geometry', 'profile16.jpg'),
+(30017, 'Teacher', 'Aarav Yadav', 'History', '9123456796', 'aarav.yadav@example.com', '1985-09-25', 'Male', 'M.A History', 'profile17.jpg'),
+(30018, 'Teacher', 'Priya Mehta', 'History', '9123456797', 'priya.mehta@example.com', '1987-10-10', 'Female', 'M.A History', 'profile18.jpg'),
+-- Only one Sanskrit teacher
+(30019, 'Teacher', 'Mohan Yadav', 'Sanskrit', '9123456798', 'mohan.yadav@example.com', '1982-02-20', 'Male', 'M.A Sanskrit', 'profile19.jpg');
+
+
+
+
+
+
+-- Create classes with their respective IDs and unique staff assignments
+INSERT INTO Classes (class_id, class_name, staff_id, total_classes_takes) VALUES
+(1, '1st Grade', 30001, 0),     -- Math
+(2, '2nd Grade', 30002, 0),     -- Marathi
+(3, '3rd Grade', 30003, 0),     -- English
+(4, '4th Grade', 30004, 0),     -- History
+(5, '5th Grade', 30005, 0),     -- Hindi
+(6, '6th Grade', 30006, 0),     -- Hindi
+(7, '7th Grade', 30007, 0),     -- Marathi
+(8, '8th Grade (Hindi)', 30008, 0), 
+(9, '8th Grade (Sanskrit)', 30009, 0),
+(10, '9th Grade (Hindi)', 30010, 0), 
+(11, '9th Grade (Sanskrit)', 30011, 0), -- Update to an existing staff_id
+(12, '10th Grade (Hindi)', 30012, 0), -- Update to an existing staff_id
+(13, '10th Grade (Sanskrit)', 30013, 0); -- Update to an existing staff_id
+
+
+
+-- Create users for the respective IDs and roles
+INSERT INTO Users (user_id, username, password, role, frv_question, answer) VALUES
+
+-- Staff
+(30001, '30001', '30001', 'staff', 'What is your staff ID?', '30001'),
+(30002, '30002', '30002', 'staff', 'What is your staff ID?', '30002'),
+(30003, '30003', '30003', 'staff', 'What is your staff ID?', '30003'),
+(30004, '30004', '30004', 'staff', 'What is your staff ID?', '30004'),
+(30005, '30005', '30005', 'staff', 'What is your staff ID?', '30005'),
+(30006, '30006', '30006', 'staff', 'What is your staff ID?', '30006'),
+(30007, '30007', '30007', 'staff', 'What is your staff ID?', '30007'),
+(30008, '30008', '30008', 'staff', 'What is your staff ID?', '30008'),
+(30009, '30009', '30009', 'staff', 'What is your staff ID?', '30009'),
+(30010, '30010', '30010', 'staff', 'What is your staff ID?', '30010'),
+(30011, '30011', '30011', 'staff', 'What is your staff ID?', '30011'),
+(30012, '30012', '30012', 'staff', 'What is your staff ID?', '30012'),
+(30013, '30013', '30013', 'staff', 'What is your staff ID?', '30013'),
+(30014, '30014', '30014', 'staff', 'What is your staff ID?', '30014'),
+(30015, '30015', '30015', 'staff', 'What is your staff ID?', '30015'),
+(30016, '30016', '30016', 'staff', 'What is your staff ID?', '30016'),
+(30017, '30017', '30017', 'staff', 'What is your staff ID?', '30017'),
+(30018, '30018', '30018', 'staff', 'What is your staff ID?', '30018'),
+(30019, '30019', '30019', 'staff', 'What is your staff ID?', '30019');
+
