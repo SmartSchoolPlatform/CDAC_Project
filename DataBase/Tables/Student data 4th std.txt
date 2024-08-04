@@ -1,0 +1,25 @@
+INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic) VALUES
+(10001, '123 Street, City, State', '2024-01-01', '2015-04-10', 'student1@example.com', 'Male', 'Aarav Sharma', '1234567890', 'profile1.jpg'),
+(10002, '456 Street, City, State', '2024-01-01', '2015-05-12', 'student2@example.com', 'Female', 'Isha Patel', '1234567891', 'profile2.jpg'),
+(10003, '789 Street, City, State', '2024-01-01', '2015-06-23', 'student3@example.com', 'Male', 'Vivaan Gupta', '1234567892', 'profile3.jpg'),
+(10004, '101 Street, City, State', '2024-01-01', '2015-07-30', 'student4@example.com', 'Female', 'Saanvi Rao', '1234567893', 'profile4.jpg'),
+(10005, '202 Street, City, State', '2024-01-01', '2015-08-15', 'student5@example.com', 'Male', 'Arjun Mehta', '1234567894', 'profile5.jpg'),
+(10006, '303 Street, City, State', '2024-01-01', '2015-09-10', 'student6@example.com', 'Female', 'Ananya Kumar', '1234567895', 'profile6.jpg'),
+(10007, '404 Street, City, State', '2024-01-01', '2015-10-22', 'student7@example.com', 'Male', 'Ayaan Singh', '1234567896', 'profile7.jpg'),
+(10008, '505 Street, City, State', '2024-01-01', '2015-11-30', 'student8@example.com', 'Female', 'Diya Verma', '1234567897', 'profile8.jpg'),
+(10009, '606 Street, City, State', '2024-01-01', '2015-12-12', 'student9@example.com', 'Male', 'Kabir Joshi', '1234567898', 'profile9.jpg'),
+(10010, '707 Street, City, State', '2024-01-01', '2015-12-25', 'student10@example.com', 'Female', 'Mira Sharma', '1234567899', 'profile10.jpg');
+
+
+
+INSERT INTO parents (parent_id, address, email, name, phone_number, suggestions, student_id) VALUES
+(20001, '123 Street, City, State', 'parent1@example.com', 'Rajesh Sharma', '9876543210', 'None', 10001),
+(20002, '456 Street, City, State', 'parent2@example.com', 'Sita Patel', '9876543211', 'None', 10002),
+(20003, '789 Street, City, State', 'parent3@example.com', 'Ravi Gupta', '9876543212', 'None', 10003),
+(20004, '101 Street, City, State', 'parent4@example.com', 'Neeta Rao', '9876543213', 'None', 10004),
+(20005, '202 Street, City, State', 'parent5@example.com', 'Sunil Mehta', '9876543214', 'None', 10005),
+(20006, '303 Street, City, State', 'parent6@example.com', 'Kiran Kumar', '9876543215', 'None', 10006),
+(20007, '404 Street, City, State', 'parent7@example.com', 'Rakesh Singh', '9876543216', 'None', 10007),
+(20008, '505 Street, City, State', 'parent8@example.com', 'Sunita Verma', '9876543217', 'None', 10008),
+(20009, '606 Street, City, State', 'parent9@example.com', 'Arun Joshi', '9876543218', 'None', 10009),
+(20010, '707 Street, City, State', 'parent10@example.com', 'Rekha Sharma', '9876543219', 'None', 10010);

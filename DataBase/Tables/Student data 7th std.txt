@@ -1,0 +1,27 @@
+-- New 10 students with birthdates in 2012
+INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic) VALUES
+(10031, '2828 Street, City, State', '2024-01-01', '2012-01-10', 'student31@example.com', 'Male', 'Ishaan Patel', '1234567831', 'profile31.jpg'),
+(10032, '2929 Street, City, State', '2024-01-01', '2012-02-14', 'student32@example.com', 'Female', 'Nisha Gupta', '1234567832', 'profile32.jpg'),
+(10033, '3030 Street, City, State', '2024-01-01', '2012-03-18', 'student33@example.com', 'Male', 'Aarav Sharma', '1234567833', 'profile33.jpg'),
+(10034, '3131 Street, City, State', '2024-01-01', '2012-04-22', 'student34@example.com', 'Female', 'Sanya Reddy', '1234567834', 'profile34.jpg'),
+(10035, '3232 Street, City, State', '2024-01-01', '2012-05-26', 'student35@example.com', 'Male', 'Vihaan Joshi', '1234567835', 'profile35.jpg'),
+(10036, '3333 Street, City, State', '2024-01-01', '2012-06-20', 'student36@example.com', 'Female', 'Riya Sharma', '1234567836', 'profile36.jpg'),
+(10037, '3434 Street, City, State', '2024-01-01', '2012-07-24', 'student37@example.com', 'Male', 'Reyansh Kumar', '1234567837', 'profile37.jpg'),
+(10038, '3535 Street, City, State', '2024-01-01', '2012-08-28', 'student38@example.com', 'Female', 'Ananya Singh', '1234567838', 'profile38.jpg'),
+(10039, '3636 Street, City, State', '2024-01-01', '2012-09-30', 'student39@example.com', 'Male', 'Ayaan Patel', '1234567839', 'profile39.jpg'),
+(10040, '3737 Street, City, State', '2024-01-01', '2012-10-31', 'student40@example.com', 'Female', 'Meher Verma', '1234567840', 'profile40.jpg');
+
+
+
+-- New 10 parents
+INSERT INTO parents (parent_id, address, email, name, phone_number, suggestions, student_id) VALUES
+(20031, '2828 Street, City, State', 'parent31@example.com', 'Rajesh Patel', '9876543231', 'None', 10031),
+(20032, '2929 Street, City, State', 'parent32@example.com', 'Sunita Gupta', '9876543232', 'None', 10032),
+(20033, '3030 Street, City, State', 'parent33@example.com', 'Amit Sharma', '9876543233', 'None', 10033),
+(20034, '3131 Street, City, State', 'parent34@example.com', 'Neelam Reddy', '9876543234', 'None', 10034),
+(20035, '3232 Street, City, State', 'parent35@example.com', 'Vijay Joshi', '9876543235', 'None', 10035),
+(20036, '3333 Street, City, State', 'parent36@example.com', 'Pooja Sharma', '9876543236', 'None', 10036),
+(20037, '3434 Street, City, State', 'parent37@example.com', 'Sandeep Kumar', '9876543237', 'None', 10037),
+(20038, '3535 Street, City, State', 'parent38@example.com', 'Rekha Singh', '9876543238', 'None', 10038),
+(20039, '3636 Street, City, State', 'parent39@example.com', 'Anil Patel', '9876543239', 'None', 10039),
+(20040, '3737 Street, City, State', 'parent40@example.com', 'Geeta Verma', '9876543240', 'None', 10040);
