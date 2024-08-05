@@ -1,0 +1,27 @@
+-- New 10 students with birthdates in 2018
+INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic) VALUES
+(10101, '8898 Street, City, State', '2024-01-01', '2018-01-15', 'aarav.singh@gmail.com', 'Male', 'Aarav Singh', '1234567811', 'profile101.jpg'),
+(10102, '8999 Street, City, State', '2024-01-01', '2018-02-22', 'ivaan.sharma@gmail.com', 'Male', 'Ivaan Sharma', '1234567812', 'profile102.jpg'),
+(10103, '9090 Street, City, State', '2024-01-01', '2018-03-30', 'isha.kumar@gmail.com', 'Female', 'Isha Kumar', '1234567813', 'profile103.jpg'),
+(10104, '9191 Street, City, State', '2024-01-01', '2018-04-25', 'kabir.patel@gmail.com', 'Male', 'Kabir Patel', '1234567814', 'profile104.jpg'),
+(10105, '9292 Street, City, State', '2024-01-01', '2018-05-12', 'ananya.jain@gmail.com', 'Female', 'Ananya Jain', '1234567815', 'profile105.jpg'),
+(10106, '9393 Street, City, State', '2024-01-01', '2018-06-17', 'vivaan.agarwal@gmail.com', 'Male', 'Vivaan Agarwal', '1234567816', 'profile106.jpg'),
+(10107, '9494 Street, City, State', '2024-01-01', '2018-07-20', 'priya.mehta@gmail.com', 'Female', 'Priya Mehta', '1234567817', 'profile107.jpg'),
+(10108, '9595 Street, City, State', '2024-01-01', '2018-08-22', 'aditya.verma@gmail.com', 'Male', 'Aditya Verma', '1234567818', 'profile108.jpg'),
+(10109, '9696 Street, City, State', '2024-01-01', '2018-09-15', 'sanya.bhatia@gmail.com', 'Female', 'Sanya Bhatia', '1234567819', 'profile109.jpg'),
+(10110, '9797 Street, City, State', '2024-01-01', '2018-10-05', 'arjun.ravi@gmail.com', 'Male', 'Arjun Ravi', '1234567820', 'profile110.jpg');
+
+
+
+-- New 10 parents
+INSERT INTO parents (parent_id, address, email, name, phone_number, suggestions, student_id) VALUES
+(20101, '8898 Street, City, State', 'aarav.singh@gmail.com', 'Ravi Singh', '9876543311', 'None', 10101),
+(20102, '8999 Street, City, State', 'ivaan.sharma@gmail.com', 'Meera Sharma', '9876543312', 'None', 10102),
+(20103, '9090 Street, City, State', 'isha.kumar@gmail.com', 'Raj Kumar', '9876543313', 'None', 10103),
+(20104, '9191 Street, City, State', 'kabir.patel@gmail.com', 'Sunita Patel', '9876543314', 'None', 10104),
+(20105, '9292 Street, City, State', 'ananya.jain@gmail.com', 'Vikram Jain', '9876543315', 'None', 10105),
+(20106, '9393 Street, City, State', 'vivaan.agarwal@gmail.com', 'Anita Agarwal', '9876543316', 'None', 10106),
+(20107, '9494 Street, City, State', 'priya.mehta@gmail.com', 'Rajesh Mehta', '9876543317', 'None', 10107),
+(20108, '9595 Street, City, State', 'aditya.verma@gmail.com', 'Pooja Verma', '9876543318', 'None', 10108),
+(20109, '9696 Street, City, State', 'sanya.bhatia@gmail.com', 'Ravi Bhatia', '9876543319', 'None', 10109),
+(20110, '9797 Street, City, State', 'arjun.ravi@gmail.com', 'Neelam Ravi', '9876543320', 'None', 10110);
