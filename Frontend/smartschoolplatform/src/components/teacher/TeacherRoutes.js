@@ -6,11 +6,11 @@ import Classes from './Classes';
 import Assignments from './Assignments';
 import AddGrades from './AddGrades';
 import Notices from '../Notices';
+import TeacherCommunication from './TeacherCommunication'; // Import new component
+import AddAttendanceRecord from './AddAttendanceRecord';
 
 const TeacherRoutes = () => (
-    
     <Routes>
-        
         <Route path="/" element={<TeacherDashboard />}>
             <Route index element={<Profile />} /> {/* Default route for /teacher */}
             <Route path="profile" element={<Profile />} />
@@ -18,6 +18,8 @@ const TeacherRoutes = () => (
             <Route path="assignments" element={<Assignments />} />
             <Route path="add-grades" element={<AddGrades />} />
             <Route path="notices" element={<Notices />} />
+            <Route path="communication" element={<TeacherCommunication />} /> {/* New route */}
+            <Route path="attendance" element={<AddAttendanceRecord />} /> 
         </Route>
     </Routes>
 );

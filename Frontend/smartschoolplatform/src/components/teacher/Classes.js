@@ -20,6 +20,7 @@ const Classes = () => {
                 const response = await axios.get(`http://localhost:8282/subjects/classes/staff/${user.username}`);
                 console.log("API Response:", response.data); // Log the API response
                 setClassesData(response.data);
+                
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching classes data', error);

@@ -6,13 +6,13 @@ function Communication() {
   const { user } = useAuth(); // Make sure this contains the parentId and classId
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-  const [parentId, setParentId] = useState(user.userId); // Assuming parentId is available here
+  const [parentId, setParentId] = useState(user.username); // Assuming parentId is available here
   const [classId, setClassId] = useState(''); // Assuming classId is available here
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8282/communications/parent/${parentId}`);
+        const response = await axios.get(`http://localhost:8282/communications/receiver/${parentId}`);
         const response1 = await axios.get(`http://localhost:8282/parents/${parentId}/class-ids`);
         console.log("\n\ndata:\n"+response1.data);
         //setParentId(response1);
@@ -31,9 +31,12 @@ function Communication() {
     try {
       // Assuming classId is a single value, not an array
       const payload = {
-        parentId: parentId, // Number
+        receiver_id:null,
+        sender_id: parentId, // Number
         classId: Array.isArray(classId) ? classId[0] : classId, // Convert array to single value if necessary
         message: newMessage, // String
+        
+
       };
       console.log('Sending payload:', payload); // Log payload for debugging
   
@@ -76,6 +79,7 @@ function Communication() {
               </li>
             ))}
           </ul>
+
         )}
       </div>
     </div>

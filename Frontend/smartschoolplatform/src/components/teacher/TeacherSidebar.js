@@ -9,7 +9,9 @@ function TeacherSidebar() {
         <li><Link to="classes">Classes</Link></li>
         <li><Link to="assignments">Assignments</Link></li>
         <li><Link to="add-grades">Add Grades</Link></li>
-        <li><Link to="/notices">Notices</Link></li>
+        <li><Link to="notices">Notices</Link></li>
+        <li><Link to="communication">Communication</Link></li> {/* New link */}
+        <li><Link to="attendance">Add Attendance</Link></li>
       </ul>
     </nav>
   );
