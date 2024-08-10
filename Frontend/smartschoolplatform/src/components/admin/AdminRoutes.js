@@ -1,9 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from './AdminDashboard'; // Ensure the path is correct
-import AdminProfile from './Profile'; // Ensure the path is correct
-import StudentRecord from './StudentRecord'; // Ensure the path is correct
-import StaffRecord from './StaffRecord'; // Ensure the path is correct
+import AdminDashboard from './AdminDashboard';
+import AdminProfile from './Profile';
+import StudentRecord from './StudentRecord';
+import CreateStudent from './CreateStudent'; 
+import StaffRecord from './StaffRecord';
+import CreateStaff from './CreateStaff';
+import EditSubject from './EditSubject';
+import EditStudent from './EditStudent';
+import EditStaff from './EditStaff';
 
 const AdminRoutes = () => (
   <Routes>
@@ -11,10 +16,14 @@ const AdminRoutes = () => (
       <Route index element={<AdminProfile />} />
       <Route path="profile" element={<AdminProfile />} />
       <Route path="student-record" element={<StudentRecord />} />
+      <Route path="create-student" element={<CreateStudent />} />
+      <Route path="edit-student/:studentId" element={<EditStudent />} />
       <Route path="staff-record" element={<StaffRecord />} />
+      <Route path="create-staff" element={<CreateStaff />} />
+      <Route path="edit-staff/:staffId" element={<EditStaff />} />
+      <Route path="assign-subjects" element={<EditSubject />} />
     </Route>
   </Routes>
 );
-
 
 export default AdminRoutes;
