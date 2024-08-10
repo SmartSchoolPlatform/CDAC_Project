@@ -1,9 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import AdminDashboard from './AdminDashboard';
+import Layout from '../Layout';
+import AdminSidebar from './AdminSidebar';
 import AdminProfile from './Profile';
 import StudentRecord from './StudentRecord';
-import CreateStudent from './CreateStudent'; 
+import CreateStudent from './CreateStudent';
 import StaffRecord from './StaffRecord';
 import CreateStaff from './CreateStaff';
 import EditSubject from './EditSubject';
@@ -12,7 +13,7 @@ import EditStaff from './EditStaff';
 
 const AdminRoutes = () => (
   <Routes>
-    <Route path="/" element={<AdminDashboard />}>
+    <Route path="/" element={<Layout Sidebar={AdminSidebar} />}>
       <Route index element={<AdminProfile />} />
       <Route path="profile" element={<AdminProfile />} />
       <Route path="student-record" element={<StudentRecord />} />

@@ -1,3 +1,4 @@
+/* src/components/teacher/TeacherDashboard.css */
 .sidebar {
     width: 200px;
     background: #f4f4f4;
@@ -25,26 +26,4 @@
     padding: 20px;
 }
 
-/* Class list styles */
-.class-list ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.class-list li {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin: 5px 0;
-}
-
-.class-list li:hover {
-    background-color: #f0f0f0;
-}
-
-/* Class details styles */
-.class-details {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-}
+/* Additional styles as needed */

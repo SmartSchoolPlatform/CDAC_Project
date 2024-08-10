@@ -7,8 +7,8 @@ import LogoutButton from '../LogoutButton';
 
 const AdminDashboard = () => (
   <div style={{ display: 'flex' }}>
-    <LogoutButton />
 
+<LogoutButton />
     <AdminSidebar />
     <div className="content">
       <Outlet /> {/* Renders nested routes */}

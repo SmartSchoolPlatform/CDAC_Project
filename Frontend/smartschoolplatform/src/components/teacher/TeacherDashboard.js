@@ -9,10 +9,10 @@ import Notices from '../Notices';
 import TeacherCommunication from './TeacherCommunication'; // Import new component
 import './TeacherDashboard.css'; // Import CSS file
 import AddAttendanceRecord from './AddAttendanceRecord';
-
 const TeacherDashboard = () => (
   <div style={{ display: 'flex' }}>
     <TeacherSidebar />
+
     <div className="content">
       <Routes>
         <Route path="/" element={<Profile />} />

@@ -1,21 +1,31 @@
-import React, { createContext, useContext, useState } from 'react';
+// src/context/AuthContext.js
+
+import React, { createContext, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+export function AuthProvider({ children }) {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-    return (
-        <AuthContext.Provider value={{ user, setUser }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+  const login = (userData) => {
+    setUser(userData);
+    navigate('/'); // Redirect to home or another page
+  };
 
-export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (context === undefined) {
-        throw new Error('useAuth must be used within an AuthProvider');
-    }
-    return context;
-};
+  const logout = () => {
+    setUser(null);
+    navigate('/login'); // Redirect to login page
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
+}

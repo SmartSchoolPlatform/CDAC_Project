@@ -8,11 +8,13 @@ import Grades from './Grades';
 import ReportCard from './ReportCard';
 import Subjects from './Subjects';
 import Notices from '../Notices';
-
+import StudentSidebar from './StudentSidebar';
+import Layout from '../Layout';
 
 const StudentRoutes = () => (
   <Routes>
-    <Route path="/" element={<StudentDashboard />}>
+    {/* <Route path="/" element={<StudentDashboard />}> */}
+    <Route path="/" element={<Layout Sidebar={StudentSidebar} />}>
       <Route index element={<Profile />} /> {/* Default route for /student */}
       <Route path="profile" element={<Profile />} />
       <Route path="assignments" element={<Assignments />} />
