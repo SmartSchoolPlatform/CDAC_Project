@@ -105,12 +105,12 @@ CREATE TABLE Attendance (
     FOREIGN KEY (class_id) REFERENCES Classes(class_id)
 );
 
-CREATE TABLE Assignments (
-    assignment_id INT PRIMARY KEY AUTO_INCREMENT,
-    assignment_name VARCHAR(100) NOT NULL,
-    assignment_date DATE NOT NULL,
-    subject_id INT NOT NULL,
-    FOREIGN KEY (subject_id) REFERENCES Subjects(subject_id)
+CREATE TABLE assignments (
+    assignment_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    assignment_date VARCHAR(255),
+    assignment_name VARCHAR(255),
+    subject_id BIGINT,
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
 );
 
 CREATE TABLE Assignment_Submissions (
@@ -124,12 +124,12 @@ CREATE TABLE Assignment_Submissions (
 );
 
 CREATE TABLE final_records (
-    final_record_id INT PRIMARY KEY AUTO_INCREMENT,
+    final_record_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     good_at VARCHAR(255),
     suggestions VARCHAR(255),
     weak_at VARCHAR(255),
     class_id BIGINT,
-    student_id INT,
+    student_id BIGINT,
     FOREIGN KEY (student_id) REFERENCES students(student_id),
     FOREIGN KEY (class_id) REFERENCES classes(class_id)
 );
