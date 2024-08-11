@@ -10,6 +10,7 @@ import CreateStaff from './CreateStaff';
 import EditSubject from './EditSubject';
 import EditStudent from './EditStudent';
 import EditStaff from './EditStaff';
+import AdminUpgradeStudents from './AdminUpgradeStudents';
 
 const AdminRoutes = () => (
   <Routes>
@@ -23,6 +24,7 @@ const AdminRoutes = () => (
       <Route path="create-staff" element={<CreateStaff />} />
       <Route path="edit-staff/:staffId" element={<EditStaff />} />
       <Route path="assign-subjects" element={<EditSubject />} />
+      <Route path="upgrade-students" element={<AdminUpgradeStudents />} />
     </Route>
   </Routes>
 );

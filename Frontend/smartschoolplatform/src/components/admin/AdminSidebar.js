@@ -11,6 +11,7 @@ const AdminSidebar = () => (
       <li><Link to="staff-record">Staff Record</Link></li>
       <li><Link to="create-staff">Create Staff</Link></li>
       <li><Link to="assign-subjects">Assign Subjects</Link></li>
+      <li><Link to="upgrade-students">Upgrade Students</Link></li> 
     </ul>
   </nav>
 );

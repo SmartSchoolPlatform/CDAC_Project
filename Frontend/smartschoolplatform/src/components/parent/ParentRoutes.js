@@ -9,10 +9,12 @@ import ReportCard from './ReportCard';
 import Communication from './Communication';
 import FeesRecord from './FeesRecord';
 import Notices from '../Notices';
-
+import Layout from '../Layout';
+import ParentSidebar from './ParentSidebar';
 const ParentRoutes = () => (
   <Routes>
-    <Route path="/" element={<ParentDashboard />}>
+   
+    <Route path="/" element={<Layout Sidebar={ParentSidebar} />}>
       <Route index element={<ParentProfile />} /> {/* Default route for /parent */}
       <Route path="profile" element={<ParentProfile />} />
       <Route path="student-profile" element={<StudentProfileParent />} />

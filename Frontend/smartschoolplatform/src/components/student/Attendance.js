@@ -25,10 +25,11 @@ function Attendance() {
       
       const response = await axios.get(`http://localhost:8282/attendance/student/${user.username}`);
       const data = response.data;
+      console.log(data);
 
       if (data.length > 0) {
-        const totalClassesTakes = data[0].classes.totalClassesTakes;
-        const count = data[0].count;
+        const totalClassesTakes = data[data.length-1].classes.totalClassesTakes;
+        const count = data[data.length -1].count;
         setTotalAttendance(totalClassesTakes);
         const presentDays = count;
         const absentDays = totalClassesTakes - count;

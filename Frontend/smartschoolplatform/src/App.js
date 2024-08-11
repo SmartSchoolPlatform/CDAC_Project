@@ -7,6 +7,7 @@ import TeacherRoutes from './components/teacher/TeacherRoutes';
 import AdminRoutes from './components/admin/AdminRoutes';
 import { AuthProvider } from './context/AuthContext'; // Ensure the path is correct
 import LogoutButton from './components/LogoutButton';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/parent/*" element={<ParentRoutes />} />
         <Route path="/teacher/*" element={<TeacherRoutes />} />
         <Route path="/admin/*" element={<AdminRoutes />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </AuthProvider>
   );
