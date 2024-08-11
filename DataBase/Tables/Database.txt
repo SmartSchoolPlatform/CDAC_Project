@@ -123,15 +123,15 @@ CREATE TABLE Assignment_Submissions (
     FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id)
 );
 
-CREATE TABLE Final_Records (
+CREATE TABLE final_records (
     final_record_id INT PRIMARY KEY AUTO_INCREMENT,
-    student_id INT NOT NULL,
-    class_id INT NOT NULL,
-    good_at TEXT,
-    weak_at TEXT,
-    suggestions TEXT,
-    FOREIGN KEY (student_id) REFERENCES Students(student_id),
-    FOREIGN KEY (class_id) REFERENCES Classes(class_id)
+    good_at VARCHAR(255),
+    suggestions VARCHAR(255),
+    weak_at VARCHAR(255),
+    class_id BIGINT,
+    student_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (class_id) REFERENCES classes(class_id)
 );
 
 CREATE TABLE notices (
@@ -144,7 +144,7 @@ CREATE TABLE notices (
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 );
 
-CREATE TABLE Fees (
+CREATE TABLE fees (
     fees_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     status VARCHAR(255),
     class_id BIGINT,
