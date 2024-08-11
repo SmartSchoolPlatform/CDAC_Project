@@ -134,19 +134,14 @@ CREATE TABLE Final_Records (
     FOREIGN KEY (class_id) REFERENCES Classes(class_id)
 );
 
-CREATE TABLE Notices (
-    notice_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    notice_message TEXT NOT NULL,
-    date_of_issue DATE NOT NULL
-);
-
-CREATE TABLE Notices (
+CREATE TABLE notices (
     notice_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     date_of_issue VARCHAR(255),
     notice_message VARCHAR(255),
     staff_id BIGINT,
     date_issued DATE,
-    title VARCHAR(255)
+    title VARCHAR(255),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 );
 
 
@@ -159,9 +154,10 @@ CREATE TABLE Fees (
     FOREIGN KEY (class_id) REFERENCES Classes(class_id)
 );
 
-CREATE TABLE Complaints (
-    complaint_id INT PRIMARY KEY AUTO_INCREMENT,
-    parent_id INT NOT NULL,
-    complaint_message TEXT NOT NULL,
-    FOREIGN KEY (parent_id) REFERENCES Parents(parent_id)
+CREATE TABLE complaints (
+    complaint_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    complaint_message VARCHAR(255),
+    parent_id BIGINT,
+    FOREIGN KEY (parent_id) REFERENCES parents(parent_id)
 );
+
