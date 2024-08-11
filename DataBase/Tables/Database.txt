@@ -113,14 +113,14 @@ CREATE TABLE assignments (
     FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
 );
 
-CREATE TABLE Assignment_Submissions (
-    assignment_submission_id INT PRIMARY KEY AUTO_INCREMENT,
-    student_id INT NOT NULL,
-    assignment_id INT NOT NULL,
-    submission_date DATE NOT NULL,
-    marks_obtained DECIMAL(5, 2) NULL,
-    FOREIGN KEY (student_id) REFERENCES Students(student_id),
-    FOREIGN KEY (assignment_id) REFERENCES Assignments(assignment_id)
+CREATE TABLE assignment_submissions (
+    assignment_submission_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    marks_obtained DOUBLE,
+    submission_date VARCHAR(255),
+    assignment_id BIGINT,
+    student_id BIGINT,
+    FOREIGN KEY (assignment_id) REFERENCES assignments(assignment_id),
+    FOREIGN KEY (student_id) REFERENCES students(student_id)
 );
 
 CREATE TABLE final_records (
