@@ -144,15 +144,15 @@ CREATE TABLE notices (
     FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
 );
 
-
 CREATE TABLE Fees (
-    fees_id INT PRIMARY KEY AUTO_INCREMENT,
-    parent_id INT NOT NULL,
-    class_id INT NOT NULL,
-    status ENUM('Paid', 'Unpaid') NOT NULL,
-    FOREIGN KEY (parent_id) REFERENCES Parents(parent_id),
-    FOREIGN KEY (class_id) REFERENCES Classes(class_id)
+    fees_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    status VARCHAR(255),
+    class_id BIGINT,
+    parent_id BIGINT,
+    FOREIGN KEY (class_id) REFERENCES classes(class_id),
+    FOREIGN KEY (parent_id) REFERENCES parent(parent_id)
 );
+
 
 CREATE TABLE complaints (
     complaint_id BIGINT PRIMARY KEY AUTO_INCREMENT,
