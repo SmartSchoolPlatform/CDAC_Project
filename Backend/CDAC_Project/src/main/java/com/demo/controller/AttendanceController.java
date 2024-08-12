@@ -1,12 +1,23 @@
 package com.demo.controller;
 
-import com.demo.beans.Attendance;
-import com.demo.service.AttendanceService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.demo.beans.Attendance;
+import com.demo.beans.request.AttendanceDTO;
+import com.demo.service.AttendanceService;
+import com.demo.service.ClassesService;
+import com.demo.service.StudentService;
 
 @RestController
 @RequestMapping("/attendance")
@@ -14,6 +25,12 @@ public class AttendanceController {
 
     @Autowired
     private AttendanceService attendanceService;
+    
+    @Autowired
+    private ClassesService classesService;
+    
+    @Autowired
+    private StudentService studentService;
 
     @GetMapping
     public List<Attendance> getAllAttendance() {
@@ -28,10 +45,24 @@ public class AttendanceController {
         }
         return ResponseEntity.ok(attendance);
     }
+    
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<Attendance>> getAttendanceByStudentId(@PathVariable Long studentId) {
+        List<Attendance> attendanceList = attendanceService.getAttendanceByStudentId(studentId);
+        return ResponseEntity.ok(attendanceList);
+    }
+
 
     @PostMapping
-    public Attendance createAttendance(@RequestBody Attendance attendance) {
-        return attendanceService.saveAttendance(attendance);
+    public ResponseEntity<Attendance> createOrUpdateAttendance(@RequestBody AttendanceDTO attendanceDTO) {
+        Attendance attendance = new Attendance();
+        
+        attendance.setClasses(classesService.getById(attendanceDTO.getClassId()));
+        attendance.setStudent(studentService.getStudentById(attendanceDTO.getStudentId()));
+        attendance.setCount(attendanceDTO.getCount());
+
+        Attendance savedAttendance = attendanceService.saveOrUpdateAttendance(attendance);
+        return ResponseEntity.ok(savedAttendance);
     }
 
     @PutMapping("/{id}")

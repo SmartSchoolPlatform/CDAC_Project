@@ -18,18 +18,31 @@ public class FinalRecordsServiceImpl implements FinalRecordsService {
         return finalRecordsDao.findAll();
     }
 
-    @Override
-    public FinalRecords getFinalRecordById(Long finalRecordId) {
-        return finalRecordsDao.findById(finalRecordId).orElse(null);
+    public FinalRecords saveFinalRecord(FinalRecords finalRecords) {
+        return finalRecordsDao.save(finalRecords);
     }
 
-    @Override
-    public FinalRecords saveFinalRecord(FinalRecords finalRecord) {
-        return finalRecordsDao.save(finalRecord);
+    public List<FinalRecords> getFinalRecordsByStudentId(Long studentId) {
+        return finalRecordsDao.findByStudentId(studentId);
     }
 
     @Override
     public void deleteFinalRecord(Long finalRecordId) {
         finalRecordsDao.deleteById(finalRecordId);
+    }
+    
+    public FinalRecords createOrUpdateFinalRecord(FinalRecords finalRecords) {
+        if (finalRecords.getFinalRecordId() != null) {
+            // Update existing record
+            if (finalRecordsDao.existsById(finalRecords.getFinalRecordId())) {
+                return finalRecordsDao.save(finalRecords);
+            } else {
+                // If record does not exist, create a new one
+                return finalRecordsDao.save(finalRecords);
+            }
+        } else {
+            // Create new record
+            return finalRecordsDao.save(finalRecords);
+        }
     }
 }

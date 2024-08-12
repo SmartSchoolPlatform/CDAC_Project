@@ -8,7 +8,7 @@ public interface StaffService {
 
     Staff getById(long id);
 
-    int addStaff(Staff staff);
+    Staff addStaff(Staff staff);
 
     int modifyStaff(Staff staff);
 

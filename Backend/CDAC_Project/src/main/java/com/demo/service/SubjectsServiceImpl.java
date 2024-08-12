@@ -38,4 +38,10 @@ public class SubjectsServiceImpl implements SubjectsService {
 	public List<Subjects> getSubjectsByStaffId(String staffid) {
 		return subjectDao.getSubjectByStaffId(staffid);
 	}
+
+	@Override
+	public List<Subjects> getSubjectsByClassId(Long classId) {
+		
+		return subjectDao.findByClassId(classId);
+	}
 }

@@ -1,12 +1,23 @@
 package com.demo.controller;
 
-import com.demo.beans.Assignments;
-import com.demo.service.AssignmentsService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.demo.beans.Assignments;
+import com.demo.beans.Subjects;
+import com.demo.beans.request.AssignmentsDTO;
+import com.demo.service.AssignmentsService;
+import com.demo.service.SubjectsService;
 
 @RestController
 @RequestMapping("/assignments")
@@ -14,6 +25,10 @@ public class AssignmentsController {
 
     @Autowired
     private AssignmentsService assignmentsService;
+    
+    @Autowired
+    private SubjectsService subjectsService;
+
 
     @GetMapping
     public List<Assignments> getAllAssignments() {
@@ -30,8 +45,21 @@ public class AssignmentsController {
     }
 
     @PostMapping
-    public Assignments createAssignment(@RequestBody Assignments assignment) {
-        return assignmentsService.saveAssignment(assignment);
+    public ResponseEntity<Assignments> createAssignment(@RequestBody AssignmentsDTO assignmentDTO) {
+        // Fetch the subject based on the provided subjectId
+        Subjects subject = subjectsService.getSubjectById(assignmentDTO.getSubjectId());
+        if (subject == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        // Create and save the assignment
+        Assignments assignment = new Assignments();
+        assignment.setAssignmentName(assignmentDTO.getAssignmentName());
+        assignment.setAssignmentDate(assignmentDTO.getAssignmentDate());
+        assignment.setSubject(subject);
+
+        Assignments savedAssignment = assignmentsService.saveAssignment(assignment);
+        return ResponseEntity.ok(savedAssignment);
     }
 
     @PutMapping("/{id}")
@@ -52,5 +80,11 @@ public class AssignmentsController {
         }
         assignmentsService.deleteAssignment(id);
         return ResponseEntity.noContent().build();
+    }
+    
+    @GetMapping("/subject/{subjectId}")
+    public ResponseEntity<List<Assignments>> getAssignmentsBySubjectId(@PathVariable Long subjectId) {
+        List<Assignments> assignments = assignmentsService.getAssignmentsBySubjectId(subjectId);
+        return ResponseEntity.ok(assignments);
     }
 }

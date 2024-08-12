@@ -1,10 +1,14 @@
 package com.demo.dao;
 
-import com.demo.beans.Attendance;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.demo.beans.Attendance;
+
 public interface AttendanceDao extends JpaRepository<Attendance, Long> {
-    // You can define additional query methods here if needed
+    // Use the correct property paths for the relationships
+    Attendance findByClassesClassIdAndStudentStudentId(Long classId, Long studentId);
+    
+    List<Attendance> findByStudent_StudentId(Long studentId);
 }

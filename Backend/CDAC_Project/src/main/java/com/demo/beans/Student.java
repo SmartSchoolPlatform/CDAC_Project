@@ -15,33 +15,59 @@ import javax.persistence.Table;
 @Table(name = "Students")
 public class Student {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long studentId;
+//
+//    private String name;
+//    private String dateOfBirth;
+//    private String address;
+//    private String phoneNumber;
+//    private String email;
+//
+//    @Enumerated(EnumType.STRING)
+//    private Gender gender;
+//
+//    private String profilePic;
+//    private String admissionDate;
+//
+//    @OneToOne(mappedBy = "student")
+//    private User user;
+//    
+//    @ManyToOne
+//    @JoinColumn(name = "class_id") // Column name should match the database schema
+//    private Classes classes;
+//
+//
+//    public enum Gender {
+//        Male, Female, OTHER;
+//
+//    }
+	   @Id
+	    private Long studentId;
 
-    private String name;
-    private String dateOfBirth;
-    private String address;
-    private String phoneNumber;
-    private String email;
+	    private String name;
+	    private String dateOfBirth;
+	    private String address;
+	    private String phoneNumber;
+	    private String email;
 
-    @Enumerated(EnumType.STRING)
-    private Gender gender;
+	    @Enumerated(EnumType.STRING)
+	    private Gender gender;
 
-    private String profilePic;
-    private String admissionDate;
+	    private String profilePic;
+	    private String admissionDate;
 
-    @OneToOne(mappedBy = "student")
-    private User user;
-    
-    @ManyToOne
-    @JoinColumn(name = "class_id") // Column name should match the database schema
-    private Classes classes;
+	    @OneToOne(mappedBy = "student")
+	    private User user;
 
+	    @ManyToOne
+	    @JoinColumn(name = "class_id")
+	    private Classes classes;
 
-    public enum Gender {
-        Male, Female, OTHER
-    }
+	    public enum Gender {
+	        Male, Female, OTHER
+	    }
 
 	public Student() {
 		super();

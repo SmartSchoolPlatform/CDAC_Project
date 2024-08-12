@@ -55,7 +55,7 @@ public class StaffController {
         staff.setGender(staffDTO.getGender());
         staff.setEducationDetails(staffDTO.getEducationDetails());
         staff.setProfilePic(staffDTO.getProfilePic());
-
+        staff.setStaffId(staffDTO.getStaffId());
         Staff savedStaff = staffService.addStaff(staff);
         return ResponseEntity.ok(savedStaff);
     }
@@ -76,6 +76,8 @@ public class StaffController {
         staff.setGender(staffDTO.getGender());
         staff.setPhoneNumber(staffDTO.getPhoneNumber());
         staff.setProfilePic(staffDTO.getProfilePic());
+        staff.setStaffId(staffDTO.getStaffId());
+        
         Staff updatedStaff = staffService.addStaff(staff);
         return ResponseEntity.ok(updatedStaff);
     }

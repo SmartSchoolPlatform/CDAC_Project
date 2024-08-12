@@ -9,4 +9,5 @@ public interface SubjectsService {
     Subjects saveSubject(Subjects subject);
     void deleteSubject(Long subjectId);
     List<Subjects> getSubjectsByStaffId(String staffid);
+	List<Subjects> getSubjectsByClassId(Long classId);
 }

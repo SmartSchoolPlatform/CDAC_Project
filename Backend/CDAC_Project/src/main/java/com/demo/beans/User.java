@@ -11,7 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String username; // This will be student_id, parent_id, or staff_id
 
     @Column(nullable = false)
@@ -38,7 +38,7 @@ public class User {
 
 
     public enum Role {
-        Student, Parent, Staff
+        Student, Parent, Staff, Admin
     }
     
     

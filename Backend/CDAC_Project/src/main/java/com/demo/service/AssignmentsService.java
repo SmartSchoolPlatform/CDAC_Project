@@ -8,4 +8,5 @@ public interface AssignmentsService {
     Assignments getAssignmentById(Long assignmentId);
     Assignments saveAssignment(Assignments assignment);
     void deleteAssignment(Long assignmentId);
+    List<Assignments> getAssignmentsBySubjectId(Long subjectId);
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Parent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long parentId;
 
     @OneToOne(mappedBy = "parent")

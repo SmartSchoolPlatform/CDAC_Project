@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.beans.Parent;
-import com.demo.beans.Student;
+import com.demo.beans.request.ParentDTO;
 import com.demo.service.ParentService;
+import com.demo.service.StudentService;
+import com.demo.service.UserService;
 
 @RestController
 @RequestMapping("/parents")
@@ -23,6 +25,12 @@ public class ParentController {
 
     @Autowired
     private ParentService parentService;
+    
+    @Autowired
+    private StudentService studentService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public List<Parent> getAllParents() {
@@ -49,7 +57,17 @@ public class ParentController {
     
 
     @PostMapping
-    public Parent createParent(@RequestBody Parent parent) {
+    public Parent createParent(@RequestBody ParentDTO parentDTO) {
+    	Parent parent =new Parent();
+    	System.out.println("\n\n\n"+parentDTO+"\n\n\n");
+    	parent.setAddress(parentDTO.getAddress());
+    	parent.setEmail(parentDTO.getEmail());
+    	parent.setName(parentDTO.getName());
+    	parent.setParentId(parentDTO.getUserId());
+    	parent.setPhoneNumber(parentDTO.getPhoneNumber());
+    	parent.setSuggestions(null);
+    	parent.setStudent(studentService.getStudentById( parentDTO.getStudentId()));
+    	//parent.setUser(userService.getById( parentDTO.getUserId()));
         return parentService.saveParent(parent);
     }
 

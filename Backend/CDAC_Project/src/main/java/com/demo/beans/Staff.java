@@ -2,6 +2,8 @@ package com.demo.beans;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name = "Staff")
 public class Staff {
@@ -10,14 +12,14 @@ public class Staff {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long staffId;
 
-    @Enumerated(EnumType.STRING)
-    private Designation designation;
-
+    private String designation;
     private String name;
-    private String department;
     private String phoneNumber;
     private String email;
     private String dateOfBirth;
+
+    @Enumerated(EnumType.STRING)
+    private Department department;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -27,150 +29,112 @@ public class Staff {
 
     @OneToOne(mappedBy = "staff")
     private User user;
-
-    // Getters and Setters
-
-    public enum Designation {
-        Teacher, Admin
+    
+    public enum Department {
+    	Mathematics,
+    	Marathi,
+    	English,
+    	History,
+    	Hindi,
+    	Science,
+    	Geography,
+    	Sanskrit,
+        Other
     }
 
+    
     public enum Gender {
         Male, Female, Other
     }
 
-	public Staff() {
-		super();
-	}
+    // Getters and Setters
+    public Long getStaffId() {
+        return staffId;
+    }
 
-	public Staff(Designation designation, String name, String department, String phoneNumber, String email,
-			String dateOfBirth, Gender gender, String educationDetails, String profilePic, User user) {
-		super();
-		this.designation = designation;
-		this.name = name;
-		this.department = department;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.educationDetails = educationDetails;
-		this.profilePic = profilePic;
-		this.user = user;
-	}
+    public void setStaffId(Long staffId) {
+        this.staffId = staffId;
+    }
 
-	public Staff(Long staffId, Designation designation, String name, String department, String phoneNumber,
-			String email, String dateOfBirth, Gender gender, String educationDetails, String profilePic, User user) {
-		super();
-		this.staffId = staffId;
-		this.designation = designation;
-		this.name = name;
-		this.department = department;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
-		this.gender = gender;
-		this.educationDetails = educationDetails;
-		this.profilePic = profilePic;
-		this.user = user;
-	}
+    public String getDesignation() {
+        return designation;
+    }
 
-	public Long getStaffId() {
-		return staffId;
-	}
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
-	public void setStaffId(Long staffId) {
-		this.staffId = staffId;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Designation getDesignation() {
-		return designation;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
-	}
+    public Department getDepartment() {
+        return department;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-	public String getDepartment() {
-		return department;
-	}
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-	public void setDepartment(String department) {
-		this.department = department;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public Gender getGender() {
+        return gender;
+    }
 
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
 
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
+    public String getEducationDetails() {
+        return educationDetails;
+    }
 
-	public Gender getGender() {
-		return gender;
-	}
+    public void setEducationDetails(String educationDetails) {
+        this.educationDetails = educationDetails;
+    }
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
-	}
+    public String getProfilePic() {
+        return profilePic;
+    }
 
-	public String getEducationDetails() {
-		return educationDetails;
-	}
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
 
-	public void setEducationDetails(String educationDetails) {
-		this.educationDetails = educationDetails;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public String getProfilePic() {
-		return profilePic;
-	}
-
-	public void setProfilePic(String profilePic) {
-		this.profilePic = profilePic;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Staff [staffId=" + staffId + ", designation=" + designation + ", name=" + name + ", department="
-				+ department + ", phoneNumber=" + phoneNumber + ", email=" + email + ", dateOfBirth=" + dateOfBirth
-				+ ", gender=" + gender + ", educationDetails=" + educationDetails + ", profilePic=" + profilePic
-				+ ", user=" + user + "]";
-	}
-    
-    
-    
-    
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
+
 

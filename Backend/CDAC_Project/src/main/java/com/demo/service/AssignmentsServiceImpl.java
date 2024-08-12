@@ -32,4 +32,9 @@ public class AssignmentsServiceImpl implements AssignmentsService {
     public void deleteAssignment(Long assignmentId) {
         assignmentsDao.deleteById(assignmentId);
     }
+    
+    @Override
+    public List<Assignments> getAssignmentsBySubjectId(Long subjectId) {
+        return assignmentsDao.findBySubject_SubjectId(subjectId);
+    }
 }
