@@ -65,7 +65,7 @@ public class UserController {
 
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@RequestBody User user) {
-    	System.out.println(user);
+        System.out.println(user);
         User existingUser = userService.findByUsernameAndFrvQuestionAndAnswer(user.getUsername(), user.getFrvQuestion(), user.getAnswer());
         if (existingUser != null) {
             existingUser.setPassword(user.getPassword());
@@ -75,6 +75,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid security question or answer");
         }
     }
+
     
 //    @PostMapping("/create")
 //    public ResponseEntity<Long> createUser(@RequestBody UserDTO userDTO) {
