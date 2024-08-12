@@ -23,6 +23,27 @@ INSERT INTO Staff (staff_id, designation, name, department, phone_number, email,
 -- Only one Sanskrit teacher
 (30019, 'Teacher', 'Mohan Yadav', 'Sanskrit', '9123456798', 'mohan.yadav@example.com', '1982-02-20', 'Male', 'M.A Sanskrit', 'profile19.jpg');
 
+
+
+
+
+-- Create classes with their respective IDs and unique staff assignments
+INSERT INTO Classes (class_id, class_name, staff_id, total_classes_takes) VALUES
+(1, '1st Grade', 30001, 0),     -- Math
+(2, '2nd Grade', 30002, 0),     -- Marathi
+(3, '3rd Grade', 30003, 0),     -- English
+(4, '4th Grade', 30004, 0),     -- History
+(5, '5th Grade', 30005, 0),     -- Hindi
+(6, '6th Grade', 30006, 0),     -- Hindi
+(7, '7th Grade', 30007, 0),     -- Marathi
+(8, '8th Grade (Hindi)', 30008, 0), 
+(9, '8th Grade (Sanskrit)', 30009, 0),
+(10, '9th Grade (Hindi)', 30010, 0), 
+(11, '9th Grade (Sanskrit)', 30011, 0), -- Update to an existing staff_id
+(12, '10th Grade (Hindi)', 30012, 0), -- Update to an existing staff_id
+(13, '10th Grade (Sanskrit)', 30013, 0); -- Update to an existing staff_id
+
+
 --student 4th grade 10001 to 10010 8th grade 10041 to 10050 
 INSERT INTO users (answer, frv_question, password, role, username) 
 VALUES
@@ -48,25 +69,28 @@ VALUES
 ('10050', 'What is your student ID?', '10050', 'Student', '10050');
 
 
-
-
-
--- Create classes with their respective IDs and unique staff assignments
-INSERT INTO Classes (class_id, class_name, staff_id, total_classes_takes) VALUES
-(1, '1st Grade', 30001, 0),     -- Math
-(2, '2nd Grade', 30002, 0),     -- Marathi
-(3, '3rd Grade', 30003, 0),     -- English
-(4, '4th Grade', 30004, 0),     -- History
-(5, '5th Grade', 30005, 0),     -- Hindi
-(6, '6th Grade', 30006, 0),     -- Hindi
-(7, '7th Grade', 30007, 0),     -- Marathi
-(8, '8th Grade (Hindi)', 30008, 0), 
-(9, '8th Grade (Sanskrit)', 30009, 0),
-(10, '9th Grade (Hindi)', 30010, 0), 
-(11, '9th Grade (Sanskrit)', 30011, 0), -- Update to an existing staff_id
-(12, '10th Grade (Hindi)', 30012, 0), -- Update to an existing staff_id
-(13, '10th Grade (Sanskrit)', 30013, 0); -- Update to an existing staff_id
-
+INSERT INTO users (answer, frv_question, password, role, username) 
+VALUES
+('20001', 'What is your parent ID?', '20001', 'Parent', '20001'),
+('20002', 'What is your parent ID?', '20002', 'Parent', '20002'),
+('20003', 'What is your parent ID?', '20003', 'Parent', '20003'),
+('20004', 'What is your parent ID?', '20004', 'Parent', '20004'),
+('20005', 'What is your parent ID?', '20005', 'Parent', '20005'),
+('20006', 'What is your parent ID?', '20006', 'Parent', '20006'),
+('20007', 'What is your parent ID?', '20007', 'Parent', '20007'),
+('20008', 'What is your parent ID?', '20008', 'Parent', '20008'),
+('20009', 'What is your parent ID?', '20009', 'Parent', '20009'),
+('20010', 'What is your parent ID?', '20010', 'Parent', '20010'),
+('20041', 'What is your student ID?', '20041', 'Parent', '20041'),
+('20042', 'What is your student ID?', '20042', 'Parent', '20042'),
+('20043', 'What is your student ID?', '20043', 'Parent', '20043'),
+('20044', 'What is your student ID?', '20044', 'Parent', '20044'),
+('20045', 'What is your student ID?', '20045', 'Parent', '20045'),
+('20046', 'What is your student ID?', '20046', 'Parent', '20046'),
+('20047', 'What is your student ID?', '20047', 'Parent', '20047'),
+('20048', 'What is your student ID?', '20048', 'Parent', '20048'),
+('20049', 'What is your student ID?', '20049', 'Parent', '20049'),
+('20050', 'What is your student ID?', '20050', 'Parent', '20050');
 
 
 -- Create users for the respective IDs and roles
