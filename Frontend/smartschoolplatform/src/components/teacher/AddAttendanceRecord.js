@@ -16,14 +16,10 @@ function AddAttendanceRecord() {
                 const response = await axios.get('http://localhost:8282/classes');
                 const teacherClasses = response.data.filter(cls => cls.staff.staffId == user.username);
                 setClasses(teacherClasses);
-                //console.log("data :\n\n"+response+"\n\n"+teacherClasses);
-                //console.log("Profile Response Data:\n", JSON.stringify(response, null, 2),"second data \n",JSON.stringify(teacherClasses, null, 2));
                 if (teacherClasses.length > 0) {
                     const classId = teacherClasses[0].classId;
-                    console.log("\n\nclasId :"+classId);
                     const studentsResponse = await axios.get(`http://localhost:8282/students/class/${classId}`);
                     setStudents(studentsResponse.data);
-                    console.log(students)
                 }
             } catch (error) {
                 console.error('Error fetching classes or students', error);
@@ -32,34 +28,37 @@ function AddAttendanceRecord() {
         };
 
         fetchClasses();
-    }, [user.staffId]);
+    }, [user.username]);
 
     const handleAttendanceChange = (studentId, value) => {
+        // Convert the input value to a number and apply the limit
+        const numericValue = Number(value);
+        if (numericValue > totalClassesTakes) {
+            setError('Attendance count cannot be greater than total classes taken.');
+            return;
+        }
+
         setAttendanceRecords(prevRecords => {
-            // Find if the record already exists
-            const existingRecord = prevRecords.find(record => record.studentId == studentId);
-    
+            const existingRecord = prevRecords.find(record => record.studentId === studentId);
+
             if (existingRecord) {
-                // Update the existing record
                 return prevRecords.map(record =>
-                    record.studentId == studentId ? { ...record, count: value } : record
+                    record.studentId === studentId ? { ...record, count: numericValue } : record
                 );
             } else {
-                // Add a new record
-                return [...prevRecords, { studentId, count: value }];
+                return [...prevRecords, { studentId, count: numericValue }];
             }
         });
     };
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         if (!totalClassesTakes || attendanceRecords.length === 0) {
             setError('Please fill out all fields.');
             return;
         }
-    
+
         try {
             for (const record of attendanceRecords) {
                 const attendance = {
@@ -67,21 +66,18 @@ function AddAttendanceRecord() {
                     classId: classes[0].classId, // Assuming classId from the first class
                     studentId: record.studentId
                 };
-                console.log(attendance);
                 await axios.post('http://localhost:8282/attendance', attendance);
             }
-    
+
             const totalrecord = {
                 totalClassesTakes: totalClassesTakes,
                 classId: classes[0].classId
             };
             await axios.post('http://localhost:8282/classes/save', totalrecord);
-            console.log("totalClassesTakes:", totalrecord);
         } catch (error) {
             console.error("Error submitting data:", error);
         }
     };
-    
 
     return (
         <div style={{ padding: '20px', border: '1px solid #ddd', borderRadius: '8px', maxWidth: '800px', margin: '20px auto' }}>
@@ -94,19 +90,21 @@ function AddAttendanceRecord() {
                         type="number"
                         id="totalClassesTakes"
                         value={totalClassesTakes}
-                        onChange={(e) => setTotalClassesTakes(e.target.value)}
+                        onChange={(e) => setTotalClassesTakes(Math.min(e.target.value, 366))}
                         required
+                        max="366"
                     />
                 </div>
                 {students.length > 0 ? (
                     students.map(student => (
                         <div key={student.studentId} style={{ marginBottom: '15px' }}>
-                            <label >{student.name}:</label>
+                            <label>{student.name}:</label>
                             <input
                                 type="number"
                                 id={student.studentId}
                                 onChange={(e) => handleAttendanceChange(student.studentId, e.target.value)}
                                 required
+                                max={totalClassesTakes}
                             />
                         </div>
                     ))
