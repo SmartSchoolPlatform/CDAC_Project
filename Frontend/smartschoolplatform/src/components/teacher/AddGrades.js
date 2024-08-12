@@ -5,33 +5,36 @@ import { useAuth } from '../../context/AuthContext';
 const AddGrades = () => {
     const [classes, setClasses] = useState([]);
     const [selectedClass, setSelectedClass] = useState('');
+    const [selectedSubject, setSelectedSubject] = useState('');
     const [exams] = useState(['mid-sem1', 'mid-sem2', 'sem1', 'sem2']);
     const [selectedExam, setSelectedExam] = useState('');
     const [students, setStudents] = useState([]);
     const [grades, setGrades] = useState({});
+    const [examDate, setExamDate] = useState('');
     const [loading, setLoading] = useState(false);
     const { user } = useAuth();
 
-    // Fetch classes based on the user's role
-    const fetchClasses = async () => {
+    // Fetch classes and subjects based on the user's role
+    const fetchClassesAndSubjects = async () => {
         try {
             setLoading(true);
             const response = await axios.get(`http://localhost:8282/subjects/classes/staff/${user.username}`);
             console.log("Classes Response Data:\n", JSON.stringify(response.data, null, 2));
-            // Extract class data
             const classData = response.data.map(item => ({
                 classId: item.classes.classId,
-                name: item.classes.className
+                name: item.classes.className,
+                subjectId: item.subjectId
             }));
             setClasses(classData);
+            console.log("\n\n\n=====\n\n\n", classData);
         } catch (error) {
-            console.error('Error fetching classes:', error);
+            console.error('Error fetching classes and subjects:', error);
         } finally {
             setLoading(false);
         }
     };
 
-    // Fetch students based on the selected class and exam
+    // Fetch students based on the selected class
     const fetchStudents = async () => {
         if (!selectedClass || !selectedExam) return;
 
@@ -40,10 +43,9 @@ const AddGrades = () => {
             const response = await axios.get(`http://localhost:8282/students/class/${selectedClass}`);
             console.log("Students Response Data:\n", JSON.stringify(response.data, null, 2));
             setStudents(response.data);
-            // Initialize grades object for each student
             const initialGrades = {};
             response.data.forEach(student => {
-                initialGrades[student.student_id] = ''; // Initialize grades with an empty string
+                initialGrades[student.studentId] = '';
             });
             setGrades(initialGrades);
         } catch (error) {
@@ -53,50 +55,65 @@ const AddGrades = () => {
         }
     };
 
-    // Fetch classes when the component mounts or user role changes
     useEffect(() => {
-        fetchClasses();
+        fetchClassesAndSubjects();
     }, [user.username]);
 
-    // Fetch students when either class or exam changes
     useEffect(() => {
         if (selectedClass && selectedExam) {
             fetchStudents();
         }
     }, [selectedClass, selectedExam]);
 
-    // Handle changes in selected class
     const handleClassChange = (e) => {
-        setSelectedClass(e.target.value);
+        const selectedClassId = e.target.value;
+        const selectedClassObj = classes.find(cls => cls.classId === Number(selectedClassId));
+        setSelectedClass(selectedClassId);
+        setSelectedSubject(selectedClassObj?.subjectId || '');
     };
 
-    // Handle changes in selected exam
     const handleExamChange = (e) => {
         setSelectedExam(e.target.value);
     };
 
-    // Handle changes in student grades
+    const handleExamDateChange = (e) => {
+        setExamDate(e.target.value);
+    };
+
     const handleGradeChange = (studentId, marks) => {
         setGrades(prevGrades => ({
             ...prevGrades,
-            [studentId]: marks
+            [Number(studentId)]: marks
         }));
     };
 
-    // Handle form submission to submit grades
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
-        const gradesData = Object.entries(grades).map(([studentId, marks]) => ({
-            student_id: studentId,
-            exam_id: selectedExam,
-            marks: marks
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const gradesData = students.map(student => ({
+            studentId: student.studentId,
+            examDate: examDate,
+            examName: selectedExam,
+            marks: parseFloat(grades[student.studentId]) || 0,
+            classId: Number(selectedClass),
+            subjectId: selectedSubject
         }));
+
         console.log('Grades to submit:', gradesData);
 
-        // Submit grades to the server
-        axios.post('http://localhost:8282/submit/grades', gradesData)
-            .then(response => console.log('Grades submitted'))
-            .catch(error => console.error('Error submitting grades:', error));
+        try {
+            for (const grade of gradesData) {
+                await axios.post('http://localhost:8282/marks/create', grade);
+            }
+            alert('Grades submitted successfully!');  // Show success alert
+            setGrades({}); // Optionally reset grades
+            setSelectedClass('');
+            setSelectedExam('');
+            setExamDate('');
+        } catch (error) {
+            console.error('Error submitting grades:', error);
+            alert('Error submitting grades. Please try again.');  // Show error alert
+        }
     };
 
     return (
@@ -123,12 +140,19 @@ const AddGrades = () => {
                 </select>
             </div>
 
-            <button onClick={() => fetchStudents()}>Search</button>
+            <div>
+                <label>Exam Date:</label>
+                <input
+                    type="date"
+                    value={examDate}
+                    onChange={handleExamDateChange}
+                />
+            </div>
 
             {students.length > 0 && (
                 <form onSubmit={handleSubmit}>
                     {students.map(student => (
-                        <div key={student.student_id}>
+                        <div key={student.studentId}>
                             <label>
                                 Student ID: {student.studentId}
                             </label>

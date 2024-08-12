@@ -20,7 +20,7 @@ const EditStaff = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setStaff((prevStaff) => ({
+        setStaff(prevStaff => ({
             ...prevStaff,
             [name]: value
         }));
@@ -47,6 +47,15 @@ const EditStaff = () => {
         <div>
             <h2>Edit Staff</h2>
             <form onSubmit={handleSubmit}>
+                <label>
+                    Staff ID:
+                    <input
+                        type="text"
+                        name="staffId"
+                        value={staff.staffId}
+                        disabled
+                    />
+                </label>
                 <label>
                     Name:
                     <input

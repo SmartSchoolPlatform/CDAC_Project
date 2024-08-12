@@ -1,0 +1,54 @@
+.teacher-communication {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.message-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.message-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message-list li {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    max-width: 60%;
+}
+
+.message-list li.sent {
+    background-color: #dcf8c6; /* Greenish background for sent messages */
+    margin-left: auto;
+    text-align: right;
+}
+
+.message-list li.received {
+    background-color: #f1f0f0; /* Grayish background for received messages */
+    margin-right: auto;
+    text-align: left;
+}
+
+.message-input {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.message-input textarea {
+    height: 80px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.message-input button {
+    align-self: flex-end;
+}

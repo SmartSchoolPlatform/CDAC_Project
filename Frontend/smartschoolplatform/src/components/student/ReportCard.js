@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext'; 
 
 function ReportCard() {
   const [finalRecords, setFinalRecords] = useState([]);
   const [error, setError] = useState(null);
   const [selectedStudent, setSelectedStudent] = useState(10041); // Example student ID
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchFinalRecords = async () => {
       try {
-        const response = await axios.get(`http://localhost:8282/final-records/student/${selectedStudent}`);
+        const response = await axios.get(`http://localhost:8282/final-records/student/${user.username}`);
         setFinalRecords(response.data);
       } catch (error) {
         console.error('Error fetching final records:', error);
-        setError('Error fetching final records.');
+        setError('No record');
       }
     };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../../context/AuthContext'; // Adjust path as needed
+import { useAuth } from '../../context/AuthContext';
 
 function Profile() {
   const [profileData, setProfileData] = useState(null);
@@ -25,6 +25,10 @@ function Profile() {
     return <div>Loading...</div>;
   }
 
+  const { name, dateOfBirth, address, phoneNumber, email, classes } = profileData;
+  const classDetails = classes || {};
+  const classTeacher = classDetails.staff || {};
+
   return (
     <div className="container mt-4">
       <h2>Profile</h2>
@@ -32,25 +36,55 @@ function Profile() {
         <div className="col-md-6 mb-3">
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-user fa-2x me-2"></i>
-            <span>{profileData.name}</span>
+            <span>{name}</span>
           </div>
         </div>
         <div className="col-md-6 mb-3">
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-calendar-day fa-2x me-2"></i>
-            <span>Joined: {profileData.joinDate}</span> {/* Adjust field name */}
+            <span>Date of Birth: {dateOfBirth}</span>
+          </div>
+        </div>
+        <div className="col-md-6 mb-3">
+          <div className="d-flex align-items-center">
+            <i className="fa-solid fa-home fa-2x me-2"></i>
+            <span>Address: {address}</span>
           </div>
         </div>
         <div className="col-md-6 mb-3">
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-envelope fa-2x me-2"></i>
-            <span>Email: {profileData.email}</span>
+            <span>Email: {email}</span>
           </div>
         </div>
         <div className="col-md-6 mb-3">
           <div className="d-flex align-items-center">
             <i className="fa-solid fa-phone fa-2x me-2"></i>
-            <span>Phone: {profileData.phone}</span> {/* Adjust field name */}
+            <span>Phone: {phoneNumber}</span>
+          </div>
+        </div>
+        <div className="col-md-6 mb-3">
+          <div className="d-flex align-items-center">
+            <i className="fa-solid fa-school fa-2x me-2"></i>
+            <span>Class: {classDetails.className}</span>
+          </div>
+        </div>
+        <div className="col-md-6 mb-3">
+          <div className="d-flex align-items-center">
+            <i className="fa-solid fa-chalkboard-teacher fa-2x me-2"></i>
+            <span>Class Teacher: {classTeacher.name}</span>
+          </div>
+        </div>
+        <div className="col-md-6 mb-3">
+          <div className="d-flex align-items-center">
+            <i className="fa-solid fa-phone fa-2x me-2"></i>
+            <span>Teacher's Phone: {classTeacher.phoneNumber}</span>
+          </div>
+        </div>
+        <div className="col-md-6 mb-3">
+          <div className="d-flex align-items-center">
+            <i className="fa-solid fa-envelope fa-2x me-2"></i>
+            <span>Teacher's Email: {classTeacher.email}</span>
           </div>
         </div>
       </div>

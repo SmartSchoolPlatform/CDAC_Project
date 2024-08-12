@@ -1,54 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const CreateStaff = () => {
-    const [staff, setStaff] = useState({
+const CreateStudent = () => {
+    const [student, setStudent] = useState({
         name: '',
         dateOfBirth: '',
-        department: '',
-        designation: '',
-        educationDetails: '',
+        classId: 0,
+        address: '',
+        admissionDate: '',
         email: '',
         gender: '',
         phoneNumber: '',
-        profilePic: ''
+        profilePic: '',
+        userId: null // Initialize as null
     });
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state && location.state.userId) {
+            // Ensure userId is set as a number
+            setStudent(prevStudent => ({
+                ...prevStudent,
+                userId: Number(location.state.userId)
+            }));
+        }
+    }, [location.state]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setStaff(prevStaff => ({ ...prevStaff, [name]: value }));
+        setStudent(prevStudent => ({
+            ...prevStudent,
+            [name]: name === 'classId' ? Number(value) : value
+        }));
     };
 
-    const handleSubmit = (e) => {
-        console.log(staff);
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8282/staff/create', staff)
-            .then(response => {
-                alert('Staff record created successfully.');
-                navigate('/admin/staff-record');
-            })
-            .catch(error => console.error('Error creating staff record:', error));
+        console.log("data sending :\n",student);
+        try {
+            await axios.post('http://localhost:8282/students/create', student);
+            alert(`Student record created successfully. Student ID: ${student.userId}`);
+            navigate('/admin/student-record');
+        } catch (error) {
+            console.error('Error creating student record:', error);
+        }
     };
 
     return (
         <div>
-            <h2>Create Staff</h2>
+            <h2>Create Student</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="name" value={staff.name} onChange={handleChange} placeholder="Name" />
-                <input type="date" name="dateOfBirth" value={staff.dateOfBirth} onChange={handleChange} placeholder="Date of Birth" />
-                <input type="text" name="department" value={staff.department} onChange={handleChange} placeholder="Department" />
-                <input type="text" name="designation" value={staff.designation} onChange={handleChange} placeholder="Designation" />
-                <input type="text" name="educationDetails" value={staff.educationDetails} onChange={handleChange} placeholder="Education Details" />
-                <input type="email" name="email" value={staff.email} onChange={handleChange} placeholder="Email" />
-                <input type="text" name="gender" value={staff.gender} onChange={handleChange} placeholder="Gender" />
-                <input type="text" name="phoneNumber" value={staff.phoneNumber} onChange={handleChange} placeholder="Phone Number" />
-                <input type="text" name="profilePic" value={staff.profilePic} onChange={handleChange} placeholder="Profile Pic URL" />
+                <input type="text" name="name" value={student.name} onChange={handleChange} placeholder="Name" />
+                <input type="date" name="dateOfBirth" value={student.dateOfBirth} onChange={handleChange} placeholder="Date of Birth" />
+                <input type="number" name="classId" value={student.classId} onChange={handleChange} placeholder="Class ID" />
+                <input type="text" name="address" value={student.address} onChange={handleChange} placeholder="Address" />
+                <input type="date" name="admissionDate" value={student.admissionDate} onChange={handleChange} placeholder="Admission Date" />
+                <input type="email" name="email" value={student.email} onChange={handleChange} placeholder="Email" />
+                <select name="gender" value={student.gender} onChange={handleChange}>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="OTHER">Other</option>
+                </select>
+                <input type="text" name="phoneNumber" value={student.phoneNumber} onChange={handleChange} placeholder="Phone Number" />
+                <input type="text" name="profilePic" value={student.profilePic} onChange={handleChange} placeholder="Profile Pic URL" />
+                <input type="hidden" name="userId" value={student.studentId || ''} />
                 <button type="submit">Create</button>
             </form>
         </div>
     );
 };
 
-export default CreateStaff;
+export default CreateStudent;

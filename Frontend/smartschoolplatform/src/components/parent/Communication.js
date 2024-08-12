@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth }  from '../../context/AuthContext'; // Adjust import based on your setup
+import './communication.css'; // Import your CSS file
+import { useAuth } from '../../context/AuthContext';
 
 function Communication() {
   const { user } = useAuth(); // Make sure this contains the parentId and classId
@@ -9,77 +10,83 @@ function Communication() {
   const [parentId, setParentId] = useState(user.username); // Assuming parentId is available here
   const [classId, setClassId] = useState(''); // Assuming classId is available here
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8282/communications/receiver/${parentId}`);
-        const response1 = await axios.get(`http://localhost:8282/parents/${parentId}/class-ids`);
-        console.log("\n\ndata:\n"+response1.data);
-        //setParentId(response1);
-        setClassId(response1.data);
-        setMessages(response.data);
-        console.log(user);
-      } catch (error) {
-        console.error('Error fetching messages', error);
-      }
-    };
+  const fetchMessages = async () => {
+    try {
+      // Fetch the class ID
+      const classIdResponse = await axios.get(`http://localhost:8282/parents/${parentId}/class-ids`);
+      setClassId(classIdResponse.data);
 
+      // Fetch messages for the class
+      const messagesResponse = await axios.get(`http://localhost:8282/communications/class/${classIdResponse.data}`);
+      
+      // Filter messages by parentId
+      const filteredMessages = messagesResponse.data.filter(msg => msg.receiverId === parseInt(parentId) || msg.senderId === parseInt(parentId));
+      setMessages(filteredMessages);
+    } catch (error) {
+      console.error('Error fetching messages', error);
+    }
+  };
+
+  useEffect(() => {
     fetchMessages();
   }, [parentId]);
 
   const handleSendMessage = async () => {
     try {
-      // Assuming classId is a single value, not an array
+      // Create payload
       const payload = {
-        receiver_id:null,
+        receiver_id: null, // This should be set based on the recipient
         sender_id: parentId, // Number
         classId: Array.isArray(classId) ? classId[0] : classId, // Convert array to single value if necessary
         message: newMessage, // String
-        
-
       };
-      console.log('Sending payload:', payload); // Log payload for debugging
-  
-      const response = await axios.post('http://localhost:8282/communications', payload);
-      setMessages([...messages, response.data]);
+      
+      // Send the message
+      await axios.post('http://localhost:8282/communications', payload);
+      
+      // Fetch messages again to include the new message
+      fetchMessages();
+
+      // Clear the input field
       setNewMessage('');
     } catch (error) {
       console.error('Error sending message', error);
     }
   };
-  
-  
-  
-  
-  
+
+  // Function to format the timestamp
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString(); // Formats to 'HH:MM:SS AM/PM'
+  };
 
   return (
-    <div className="container mt-4">
+    <div className="communication-container">
       <h2>Communication</h2>
-      <div className="card p-3">
-        <h4>Send a Message</h4>
+      <div className="send-message-container">
         <textarea
-          className="form-control mb-2"
           rows="3"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleSendMessage}>Send</button>
+        <button onClick={handleSendMessage}>Send</button>
       </div>
-      <div className="card p-3 mt-4">
-        <h4>Messages</h4>
+      <div>
         {messages.length === 0 ? (
           <p>No new messages</p>
         ) : (
-          <ul className="list-group">
+          <div>
             {messages.map((msg) => (
-              <li key={msg.messageId} className="list-group-item">
-                <p>{msg.message}</p>
-                <small>{msg.timestamp}</small> {/* Add timestamp or other details if available */}
-              </li>
+              <div
+                key={msg.messageId}
+                className={`message ${msg.senderId === parseInt(parentId) ? 'parent' : 'teacher'}`}
+              >
+                <div className="message-content">
+                  <p>{msg.message}</p>
+                </div>
+              </div>
             ))}
-          </ul>
-
+          </div>
         )}
       </div>
     </div>

@@ -23,16 +23,28 @@ const ForgotPassword = () => {
 
     const handleResetPassword = async () => {
         try {
-            const response = await axios.post('http://localhost:8282/users/reset-password', {
-                username,
-                frvQuestion: securityQuestion,
-                answer,
-                password: newPassword,
-            });
-            if (response.status === 200) {
-                setMessage('Password updated successfully');
+            // Fetch current password
+            const userResponse = await axios.get(`http://localhost:8282/users/${username}`);
+            if (userResponse.status === 200) {
+                const currentPassword = userResponse.data.password;
+
+                // Construct new password
+                const updatedPassword = `${newPassword}`;
+
+                // Update password
+                const response = await axios.post('http://localhost:8282/users/reset-password', {
+                    username,
+                    frvQuestion: securityQuestion,
+                    answer,
+                    password: updatedPassword,
+                });
+                if (response.status === 200) {
+                    setMessage('Password updated successfully');
+                } else {
+                    setMessage('Failed to update password');
+                }
             } else {
-                setMessage('Failed to update password');
+                setMessage('User not found');
             }
         } catch (error) {
             console.error('Error resetting password', error);

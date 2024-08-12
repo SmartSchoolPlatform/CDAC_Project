@@ -1,43 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
+import './TeacherCommunication.css';
 
-function TeacherCommunication () {
+function TeacherCommunication() {
     const [classes, setClasses] = useState([]);
     const [selectedClass, setSelectedClass] = useState('');
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState('');
     const [messageToReply, setMessageToReply] = useState(null);
-    const [commUserDetails, setcommUserDetails]=useState([]);
+    const [userDetails, setUserDetails] = useState({});
     const { user } = useAuth();
+
     // Fetch classes for the teacher
     useEffect(() => {
         const fetchClasses = async () => {
             try {
                 const response = await axios.get(`http://localhost:8282/subjects/classes/staff/${user.username}`);
-                setClasses(response.data); // Adjust based on actual response structure
-                console.log("class data:\n\n"+response.data);
-                console.log("Profile Response Data:\n", JSON.stringify(response.data, null, 2));
+                setClasses(response.data);
             } catch (error) {
                 console.error('Failed to fetch classes', error);
             }
         };
 
-            fetchClasses();
-        
+        fetchClasses();
     }, [user]);
 
-    
+    // Fetch messages for the selected class
     useEffect(() => {
         const fetchMessages = async () => {
             if (selectedClass) {
                 try {
                     const response = await axios.get(`http://localhost:8282/communications/class/${selectedClass}`);
-                    setMessages(response.data); 
-                    console.log(response.data);
-                    
-                    response.data.map(m=>fetchuserDetails(m.senderId));
+                    setMessages(response.data);
 
+                    const users = await Promise.all(response.data.map(msg =>
+                        axios.get(`http://localhost:8282/users/${msg.senderId}`)
+                    ));
+                    const userDetails = {};
+                    users.forEach((res) => {
+                        userDetails[res.data.userId] = res.data;
+                    });
+                    setUserDetails(userDetails);
                 } catch (error) {
                     console.error('Failed to fetch messages', error);
                 }
@@ -47,21 +51,7 @@ function TeacherCommunication () {
         fetchMessages();
     }, [selectedClass]);
 
-    
-    const fetchuserDetails= async (senderId) =>{
-        const response=await axios.get(`http://localhost:8282/users/${senderId}`);
-        console.log(response.data);
-        console.log("\n\n\n Role :\n");
-        if (response.data.role==="Parent"){
-            const parent=await axios.get(`http://localhost:8282/parents/${response.data.userId}`);
-            console.log("Parent:\n"+parent.data);
-        }else{
-            const teacher=await axios.get(`http://localhost:8282/staff/${response.data.userId}`);
-            console.log("Staff\n"+teacher.data);
-        }
-    }
-
-
+    // Handle sending a new message
     const handleSendMessage = async () => {
         try {
             const response = await axios.post('http://localhost:8282/communications', {
@@ -71,7 +61,6 @@ function TeacherCommunication () {
                 message: newMessage
             });
 
-            // Update messages list after sending
             setMessages([...messages, response.data]);
             setNewMessage('');
             setMessageToReply(null);
@@ -80,8 +69,17 @@ function TeacherCommunication () {
         }
     };
 
+    // Get sender name based on user details
+    const getSenderName = (senderId) => {
+        const user = userDetails[senderId];
+        if (user) {
+            return user.role === 'Parent' ? `Parent ${user.userId}` : `Teacher ${user.userId}`;
+        }
+        return 'Unknown';
+    };
+
     return (
-        <div>
+        <div className="teacher-communication">
             <h1>Teacher Communication</h1>
             <div>
                 <label>Select Class:</label>
@@ -93,19 +91,29 @@ function TeacherCommunication () {
                 </select>
             </div>
 
-            <div>
+            <div className="message-list">
                 <h2>Messages</h2>
                 <ul>
                     {messages.map(msg => (
-                        <li key={msg.messageId}>
-                            {msg.message}
-                            <button onClick={() => setMessageToReply(msg)}>Reply</button>
+                        <li
+                            key={msg.messageId}
+                            className={msg.senderId === user.username ? 'sent' : 'received'}
+                            onClick={() => setMessageToReply(msg)}
+                        >
+                            <strong>{getSenderName(msg.senderId)}:</strong>
+                            <p>{msg.message}</p>
                         </li>
                     ))}
                 </ul>
             </div>
 
-            <div>
+            <div className="message-input">
+                {messageToReply && (
+                    <div className="reply-preview">
+                        <strong>Replying to:</strong>
+                        <p>{getSenderName(messageToReply.senderId)}: {messageToReply.message}</p>
+                    </div>
+                )}
                 <textarea
                     value={newMessage}
                     onChange={(e) => setNewMessage(e.target.value)}

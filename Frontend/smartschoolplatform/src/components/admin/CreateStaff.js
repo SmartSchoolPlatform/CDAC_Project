@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const departments = [
     'Mathematics', 'Marathi', 'English', 'History', 'Hindi',
@@ -17,20 +17,23 @@ const CreateStaff = () => {
         dateOfBirth: '',
         gender: '',
         educationDetails: '',
-        profilePic: ''
+        profilePic: '',
+        staffId:null
     });
     const navigate = useNavigate();
-
+    const location = useLocation();
     const handleChange = (e) => {
         const { name, value } = e.target;
         setStaff((prevStaff) => ({
             ...prevStaff,
+            userId: Number(location.state.userId),
             [name]: value
         }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("data sending :\n",staff);
         axios.post('http://localhost:8282/staff/create', staff)
             .then(() => navigate('/admin/staff-record'))
             .catch(error => console.error('Error creating staff:', error));
