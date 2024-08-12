@@ -67,4 +67,12 @@ public class MarksController {
         Marks savedMarks = marksService.saveOrUpdateMarks(marksDTO);
         return ResponseEntity.ok(savedMarks);
     }
+    
+    
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<Marks>> getMarksByStudentId(@PathVariable Long studentId) {
+        List<Marks> marks = marksService.getMarksByStudentId(studentId);
+        System.out.println("data to send in controller:\n" + marks);
+        return marks.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(marks);
+    }
 }

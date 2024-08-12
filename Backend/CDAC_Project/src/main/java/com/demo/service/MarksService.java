@@ -11,4 +11,5 @@ public interface MarksService {
     Marks saveMark(Marks mark);
     void deleteMark(Long markId);
 	Marks saveOrUpdateMarks(MarksDTO marksDTO);
+	List<Marks> getMarksByStudentId(Long studentId) ;
 }

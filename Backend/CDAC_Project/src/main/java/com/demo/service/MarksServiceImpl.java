@@ -48,8 +48,13 @@ public class MarksServiceImpl implements MarksService {
     @Override
     public Marks saveOrUpdateMarks(MarksDTO marksDTO) {
         Marks marks;
-        // Check if the record exists by examining both examName and studentId (as an example)
-        Optional<Marks> existingMarks = marksDao.findByExamNameAndStudentId(marksDTO.getExamName(), marksDTO.getStudentId());
+        // Check if the record exists by examining examName, studentId, classId, and subjectId
+        Optional<Marks> existingMarks = marksDao.findByExamNameAndStudentIdAndClassIdAndSubjectId(
+            marksDTO.getExamName(), 
+            marksDTO.getStudentId(), 
+            marksDTO.getClassId(), 
+            marksDTO.getSubjectId()
+        );
 
         if (existingMarks.isPresent()) {
             marks = existingMarks.get();
@@ -69,5 +74,11 @@ public class MarksServiceImpl implements MarksService {
 
         // Save to the database
         return marksDao.save(marks);
+    }
+    
+    public List<Marks> getMarksByStudentId(Long studentId) {
+        List<Marks> marks = marksDao.findByStudentId(studentId);
+        System.out.println("data to send in service:\n" + marks);
+        return marks;
     }
 }
