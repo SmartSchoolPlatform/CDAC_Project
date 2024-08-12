@@ -6,6 +6,7 @@ function EditStudent() {
   const { studentId } = useParams();
   const navigate = useNavigate();
   const [student, setStudent] = useState({
+    studentId: '',
     name: '',
     address: '',
     admissionDate: '',
@@ -62,14 +63,15 @@ function EditStudent() {
     <div className="container mt-4">
       <h2>Edit Student</h2>
       <div className="form-group">
-          <label>Student Id</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            disabled
-            value={student.studentId}
-          />
-        </div>
+        <label>Student Id</label>
+        <input
+          type="text"
+          name="studentId"
+          value={student.studentId}
+          disabled
+          className="form-control"
+        />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name</label>
@@ -94,9 +96,9 @@ function EditStudent() {
         <div className="form-group">
           <label>Admission Date</label>
           <input
-            type="text"
+            type="date"
             name="admissionDate"
-            value={student.admissionDate}
+            value={student.admissionDate.substring(0, 10)} // Format to yyyy-mm-dd
             onChange={handleChange}
             className="form-control"
           />
@@ -104,9 +106,9 @@ function EditStudent() {
         <div className="form-group">
           <label>Date of Birth</label>
           <input
-            type="text"
+            type="date"
             name="dateOfBirth"
-            value={student.dateOfBirth}
+            value={student.dateOfBirth.substring(0, 10)} // Format to yyyy-mm-dd
             onChange={handleChange}
             className="form-control"
           />

@@ -1,3 +1,4 @@
+// src/routes/AdminRoutes.js
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from '../Layout';
@@ -5,13 +6,15 @@ import AdminSidebar from './AdminSidebar';
 import AdminProfile from './Profile';
 import StudentRecord from './StudentRecord';
 import CreateStudent from './CreateStudent';
+import EditStudent from './EditStudent';
 import StaffRecord from './StaffRecord';
 import CreateStaff from './CreateStaff';
-import EditSubject from './EditSubject';
-import EditStudent from './EditStudent';
 import EditStaff from './EditStaff';
+import EditSubject from './EditSubject';
 import AdminUpgradeStudents from './AdminUpgradeStudents';
 import CreateParent from './CreateParent';
+import ParentRecord from './ParentRecord'; // Added import
+import EditParent from './EditParent'; // Added import
 import CreateUser from './CreateUser';
 
 const AdminRoutes = () => (
@@ -27,8 +30,11 @@ const AdminRoutes = () => (
       <Route path="edit-staff/:staffId" element={<EditStaff />} />
       <Route path="assign-subjects" element={<EditSubject />} />
       <Route path="upgrade-students" element={<AdminUpgradeStudents />} />
-      <Route path="create-parents" element={<CreateParent />} />
       <Route path="create-user" element={<CreateUser />} />
+      <Route path="parent-record" element={<ParentRecord />} /> 
+      <Route path="edit-parent/:parentId" element={<EditParent />} /> 
+      <Route path="create-parents" element={<CreateParent />} />
+
     </Route>
   </Routes>
 );

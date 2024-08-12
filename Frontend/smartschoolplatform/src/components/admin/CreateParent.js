@@ -54,8 +54,16 @@ const CreateParent = () => {
                 <input type="text" name="address" value={parent.address} onChange={handleChange} placeholder="Address" />
                 <input type="email" name="email" value={parent.email} onChange={handleChange} placeholder="Email" />
                 <input type="text" name="name" value={parent.name} onChange={handleChange} placeholder="Name" />
-                <input type="text" name="phoneNumber" value={parent.phoneNumber} onChange={handleChange} placeholder="Phone Number" />
-                <input type="number" name="studentId" value={parent.studentId} onChange={handleChange} placeholder="Student ID" />
+                <input
+                        type="number"
+                        name="phoneNumber"
+                        value={parent.phoneNumber}
+                        onChange={handleChange}
+                        placeholder="Phone Number"
+                        maxLength="12" // Limit input to 14 characters
+                        pattern="\d*" // Ensure only numeric values are allowed
+                />                
+                <input type="number" name="studentId" value={parent.studentId} onChange={handleChange} placeholder="Student ID" min="1" step="1" />                
                 <input type="hidden" name="userId" value={parent.userId || ''} />
                 <button type="submit">Create</button>
             </form>

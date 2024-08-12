@@ -9,6 +9,7 @@ const CreateUser = () => {
         password: '',
         role: 'Student', // Default role
     });
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -19,9 +20,31 @@ const CreateUser = () => {
         }));
     };
 
+    const validateForm = () => {
+        if (!user.frvQuestion || !user.answer || !user.password || !user.role) {
+            return "All fields are required.";
+        }
+        const passwordError = validatePassword(user.password);
+        return passwordError;
+    };
+
+    const validatePassword = (password) => {
+        const minLength = 8;
+        const specialCharPattern = /[!@#$%^&*(),.?":{}|<>]/;
+        if (password.length < minLength) return "Password must be at least 8 characters long.";
+        if (!specialCharPattern.test(password)) return "Password must contain at least one special character.";
+        return "";
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("User data sending :\n",user);
+        const validationError = validateForm();
+        if (validationError) {
+            setError(validationError);
+            return;
+        }
+        setError('');
+        console.log("User data sending :\n", user);
         try {
             const response = await axios.post('http://localhost:8282/users/create', user);
             const createdUser = response.data;
@@ -43,14 +66,33 @@ const CreateUser = () => {
         <div>
             <h2>Create User</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="frvQuestion" value={user.frvQuestion} onChange={handleChange} placeholder="Security Question" />
-                <input type="text" name="answer" value={user.answer} onChange={handleChange} placeholder="Answer" />
-                <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="Password" />
+                <input
+                    type="text"
+                    name="frvQuestion"
+                    value={user.frvQuestion}
+                    onChange={handleChange}
+                    placeholder="Security Question"
+                />
+                <input
+                    type="text"
+                    name="answer"
+                    value={user.answer}
+                    onChange={handleChange}
+                    placeholder="Answer"
+                />
+                <input
+                    type="password"
+                    name="password"
+                    value={user.password}
+                    onChange={handleChange}
+                    placeholder="Password"
+                />
                 <select name="role" value={user.role} onChange={handleChange}>
                     <option value="Student">Student</option>
                     <option value="Staff">Teacher</option>
                     <option value="Parent">Parent</option>
                 </select>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <button type="submit">Create User</button>
             </form>
         </div>
