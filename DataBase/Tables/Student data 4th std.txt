@@ -1,14 +1,14 @@
-INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic) VALUES
-(10001, '123 Street, City, State', '2024-01-01', '2015-04-10', 'student1@example.com', 'Male', 'Aarav Sharma', '1234567890', 'profile1.jpg'),
-(10002, '456 Street, City, State', '2024-01-01', '2015-05-12', 'student2@example.com', 'Female', 'Isha Patel', '1234567891', 'profile2.jpg'),
-(10003, '789 Street, City, State', '2024-01-01', '2015-06-23', 'student3@example.com', 'Male', 'Vivaan Gupta', '1234567892', 'profile3.jpg'),
-(10004, '101 Street, City, State', '2024-01-01', '2015-07-30', 'student4@example.com', 'Female', 'Saanvi Rao', '1234567893', 'profile4.jpg'),
-(10005, '202 Street, City, State', '2024-01-01', '2015-08-15', 'student5@example.com', 'Male', 'Arjun Mehta', '1234567894', 'profile5.jpg'),
-(10006, '303 Street, City, State', '2024-01-01', '2015-09-10', 'student6@example.com', 'Female', 'Ananya Kumar', '1234567895', 'profile6.jpg'),
-(10007, '404 Street, City, State', '2024-01-01', '2015-10-22', 'student7@example.com', 'Male', 'Ayaan Singh', '1234567896', 'profile7.jpg'),
-(10008, '505 Street, City, State', '2024-01-01', '2015-11-30', 'student8@example.com', 'Female', 'Diya Verma', '1234567897', 'profile8.jpg'),
-(10009, '606 Street, City, State', '2024-01-01', '2015-12-12', 'student9@example.com', 'Male', 'Kabir Joshi', '1234567898', 'profile9.jpg'),
-(10010, '707 Street, City, State', '2024-01-01', '2015-12-25', 'student10@example.com', 'Female', 'Mira Sharma', '1234567899', 'profile10.jpg');
+INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic,class_id) VALUES
+(10001, '123 Street, City, State', '2024-01-01', '2015-04-10', 'student1@example.com', 'Male', 'Aarav Sharma', '1234567890', 'profile1.jpg',4),
+(10002, '456 Street, City, State', '2024-01-01', '2015-05-12', 'student2@example.com', 'Female', 'Isha Patel', '1234567891', 'profile2.jpg',4),
+(10003, '789 Street, City, State', '2024-01-01', '2015-06-23', 'student3@example.com', 'Male', 'Vivaan Gupta', '1234567892', 'profile3.jpg',4),
+(10004, '101 Street, City, State', '2024-01-01', '2015-07-30', 'student4@example.com', 'Female', 'Saanvi Rao', '1234567893', 'profile4.jpg',4),
+(10005, '202 Street, City, State', '2024-01-01', '2015-08-15', 'student5@example.com', 'Male', 'Arjun Mehta', '1234567894', 'profile5.jpg',4),
+(10006, '303 Street, City, State', '2024-01-01', '2015-09-10', 'student6@example.com', 'Female', 'Ananya Kumar', '1234567895', 'profile6.jpg',4),
+(10007, '404 Street, City, State', '2024-01-01', '2015-10-22', 'student7@example.com', 'Male', 'Ayaan Singh', '1234567896', 'profile7.jpg',4),
+(10008, '505 Street, City, State', '2024-01-01', '2015-11-30', 'student8@example.com', 'Female', 'Diya Verma', '1234567897', 'profile8.jpg',4),
+(10009, '606 Street, City, State', '2024-01-01', '2015-12-12', 'student9@example.com', 'Male', 'Kabir Joshi', '1234567898', 'profile9.jpg',4),
+(10010, '707 Street, City, State', '2024-01-01', '2015-12-25', 'student10@example.com', 'Female', 'Mira Sharma', '1234567899', 'profile10.jpg',4);
 
 
 
