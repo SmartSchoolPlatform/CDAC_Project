@@ -1,0 +1,12 @@
+INSERT INTO students (student_id, address, admission_date, date_of_birth, email, gender, name, phone_number, profile_pic, class_id) 
+VALUES
+(10041, '3838 Street, City, State', '2024-01-01', '2011-01-12', 'student41@example.com', 'Male', 'Aditya Rao', '1234567841', 'profile41.jpg', 8),
+(10042, '3939 Street, City, State', '2024-01-01', '2011-02-15', 'student42@example.com', 'Female', 'Meera Sharma', '9999999', '', 8),
+(10043, '4040 Street, City, State', '2024-01-01', '2011-03-20', 'student43@example.com', 'Male', 'Kartik Patel', '1234567843', 'profile43.jpg', 8),
+(10044, '4141 Street, City, State', '2024-01-01', '2011-04-25', 'student44@example.com', 'Female', 'Isha Desai', '1234567844', 'profile44.jpg', 8),
+(10045, '4242 Street, City, State', '2024-01-01', '2011-05-30', 'student45@example.com', 'Male', 'Rohan Kumar', '1234567845', 'profile45.jpg', 8),
+(10046, '4343 Street, City, State', '2024-01-01', '2011-06-14', 'student46@example.com', 'Female', 'Sonia Singh', '1234567846', 'profile46.jpg', 8),
+(10047, '4444 Street, City, State', '2024-01-01', '2011-07-19', 'student47@example.com', 'Male', 'Vivaan Jain', '1234567847', 'profile47.jpg', 8),
+(10048, '4545 Street, City, State', '2024-01-01', '2011-08-22', 'student48@example.com', 'Female', 'Aarti Mehta', '1234567848', 'profile48.jpg', 8),
+(10049, '4646 Street, City, State', '2024-01-01', '2011-09-28', 'student49@example.com', 'Male', 'Aryan Patel', '1234567849', 'profile49.jpg', 8),
+(10050, '4747 Street, City, State', '2024-01-01', '2011-10-30', 'student50@example.com', 'Female', 'Tanya Gupta', '1234567850', 'profile50.jpg', 8);

@@ -27,7 +27,6 @@ INSERT INTO Staff (staff_id, designation, name, department, phone_number, email,
 
 
 
-
 -- Create classes with their respective IDs and unique staff assignments
 INSERT INTO Classes (class_id, class_name, staff_id, total_classes_takes) VALUES
 (1, '1st Grade', 30001, 0),     -- Math
@@ -44,6 +43,54 @@ INSERT INTO Classes (class_id, class_name, staff_id, total_classes_takes) VALUES
 (12, '10th Grade (Hindi)', 30012, 0), -- Update to an existing staff_id
 (13, '10th Grade (Sanskrit)', 30013, 0); -- Update to an existing staff_id
 
+
+--student 4th grade 10001 to 10010 8th grade 10041 to 10050 
+INSERT INTO users (answer, frv_question, password, role, username) 
+VALUES
+('10001', 'What is your student ID?', '10001', 'Student', '10001'),
+('10002', 'What is your student ID?', '10002', 'Student', '10002'),
+('10003', 'What is your student ID?', '10003', 'Student', '10003'),
+('10004', 'What is your student ID?', '10004', 'Student', '10004'),
+('10005', 'What is your student ID?', '10005', 'Student', '10005'),
+('10006', 'What is your student ID?', '10006', 'Student', '10006'),
+('10007', 'What is your student ID?', '10007', 'Student', '10007'),
+('10008', 'What is your student ID?', '10008', 'Student', '10008'),
+('10009', 'What is your student ID?', '10009', 'Student', '10009'),
+('10010', 'What is your student ID?', '10010', 'Student', '10010'),
+('10041', 'What is your student ID?', '10041', 'Student', '10041'),
+('10042', 'What is your student ID?', '10042', 'Student', '10042'),
+('10043', 'What is your student ID?', '10043', 'Student', '10043'),
+('10044', 'What is your student ID?', '10044', 'Student', '10044'),
+('10045', 'What is your student ID?', '10045', 'Student', '10045'),
+('10046', 'What is your student ID?', '10046', 'Student', '10046'),
+('10047', 'What is your student ID?', '10047', 'Student', '10047'),
+('10048', 'What is your student ID?', '10048', 'Student', '10048'),
+('10049', 'What is your student ID?', '10049', 'Student', '10049'),
+('10050', 'What is your student ID?', '10050', 'Student', '10050');
+
+
+INSERT INTO users (answer, frv_question, password, role, username) 
+VALUES
+('20001', 'What is your parent ID?', '20001', 'Parent', '20001'),
+('20002', 'What is your parent ID?', '20002', 'Parent', '20002'),
+('20003', 'What is your parent ID?', '20003', 'Parent', '20003'),
+('20004', 'What is your parent ID?', '20004', 'Parent', '20004'),
+('20005', 'What is your parent ID?', '20005', 'Parent', '20005'),
+('20006', 'What is your parent ID?', '20006', 'Parent', '20006'),
+('20007', 'What is your parent ID?', '20007', 'Parent', '20007'),
+('20008', 'What is your parent ID?', '20008', 'Parent', '20008'),
+('20009', 'What is your parent ID?', '20009', 'Parent', '20009'),
+('20010', 'What is your parent ID?', '20010', 'Parent', '20010'),
+('20041', 'What is your student ID?', '20041', 'Parent', '20041'),
+('20042', 'What is your student ID?', '20042', 'Parent', '20042'),
+('20043', 'What is your student ID?', '20043', 'Parent', '20043'),
+('20044', 'What is your student ID?', '20044', 'Parent', '20044'),
+('20045', 'What is your student ID?', '20045', 'Parent', '20045'),
+('20046', 'What is your student ID?', '20046', 'Parent', '20046'),
+('20047', 'What is your student ID?', '20047', 'Parent', '20047'),
+('20048', 'What is your student ID?', '20048', 'Parent', '20048'),
+('20049', 'What is your student ID?', '20049', 'Parent', '20049'),
+('20050', 'What is your student ID?', '20050', 'Parent', '20050');
 
 
 -- Create users for the respective IDs and roles
