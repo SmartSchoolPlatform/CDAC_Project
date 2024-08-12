@@ -23,6 +23,29 @@ INSERT INTO Staff (staff_id, designation, name, department, phone_number, email,
 -- Only one Sanskrit teacher
 (30019, 'Teacher', 'Mohan Yadav', 'Sanskrit', '9123456798', 'mohan.yadav@example.com', '1982-02-20', 'Male', 'M.A Sanskrit', 'profile19.jpg');
 
+--student 4th grade 10001 to 10010 8th grade 10041 to 10050 
+INSERT INTO users (answer, frv_question, password, role, username) 
+VALUES
+('10001', 'What is your student ID?', '10001', 'Student', '10001'),
+('10002', 'What is your student ID?', '10002', 'Student', '10002'),
+('10003', 'What is your student ID?', '10003', 'Student', '10003'),
+('10004', 'What is your student ID?', '10004', 'Student', '10004'),
+('10005', 'What is your student ID?', '10005', 'Student', '10005'),
+('10006', 'What is your student ID?', '10006', 'Student', '10006'),
+('10007', 'What is your student ID?', '10007', 'Student', '10007'),
+('10008', 'What is your student ID?', '10008', 'Student', '10008'),
+('10009', 'What is your student ID?', '10009', 'Student', '10009'),
+('10010', 'What is your student ID?', '10010', 'Student', '10010'),
+('10041', 'What is your student ID?', '10041', 'Student', '10041'),
+('10042', 'What is your student ID?', '10042', 'Student', '10042'),
+('10043', 'What is your student ID?', '10043', 'Student', '10043'),
+('10044', 'What is your student ID?', '10044', 'Student', '10044'),
+('10045', 'What is your student ID?', '10045', 'Student', '10045'),
+('10046', 'What is your student ID?', '10046', 'Student', '10046'),
+('10047', 'What is your student ID?', '10047', 'Student', '10047'),
+('10048', 'What is your student ID?', '10048', 'Student', '10048'),
+('10049', 'What is your student ID?', '10049', 'Student', '10049'),
+('10050', 'What is your student ID?', '10050', 'Student', '10050');
 
 
 
