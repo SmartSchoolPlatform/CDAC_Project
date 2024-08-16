@@ -78,11 +78,11 @@ CREATE TABLE Subjects (
 );
 
 CREATE TABLE Exams (
-    exam_id INT PRIMARY KEY AUTO_INCREMENT,
-    exam_name VARCHAR(100) NOT NULL,
-    exam_date DATE NOT NULL,
-    subject_id INT NOT NULL,
-    class_id INT NOT NULL,
+    exam_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    exam_date VARCHAR(255),
+    exam_name VARCHAR(255),
+    class_id BIGINT,
+    subject_id BIGINT,
     FOREIGN KEY (subject_id) REFERENCES Subjects(subject_id),
     FOREIGN KEY (class_id) REFERENCES Classes(class_id)
 );
