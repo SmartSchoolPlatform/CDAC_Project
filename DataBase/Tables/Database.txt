@@ -88,12 +88,18 @@ CREATE TABLE Exams (
 );
 
 CREATE TABLE Marks (
-    mark_id INT PRIMARY KEY AUTO_INCREMENT,
-    student_id INT NOT NULL,
-    exam_id INT NOT NULL,
-    marks DECIMAL(5, 2) NOT NULL,
+    mark_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    marks DOUBLE,
+    exam_id BIGINT,
+    student_id BIGINT,
+    exam_date VARCHAR(255),
+    exam_name VARCHAR(255),
+    class_id BIGINT,
+    subject_id BIGINT,
     FOREIGN KEY (student_id) REFERENCES Students(student_id),
-    FOREIGN KEY (exam_id) REFERENCES Exams(exam_id)
+    FOREIGN KEY (exam_id) REFERENCES Exams(exam_id),
+    FOREIGN KEY (class_id) REFERENCES Classes(class_id),
+    FOREIGN KEY (subject_id) REFERENCES Subjects(subject_id)
 );
 
 CREATE TABLE Attendance (
